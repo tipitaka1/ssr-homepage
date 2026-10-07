@@ -1,0 +1,20 @@
+/* 시안 B — 남색 첫 화면: 머리 띠와 첫 화면을 로고의 남색으로 */
+.site-head{background:rgba(9,29,54,.97);border-bottom-color:rgba(255,255,255,.08)}
+.brand{color:#fff}
+.menu a{color:#d3dfeb}
+.menu a:hover{color:#fff}
+.menu .btn,.menu .btn:hover{background:#fff;color:var(--navy)}
+.hero{background:
+  radial-gradient(55% 75% at 88% 18%,rgba(34,196,237,.20),transparent 70%),
+  radial-gradient(70% 90% at 0% 100%,rgba(29,117,179,.38),transparent 65%),
+  #091d36;color:#fff;padding:96px 0 108px}
+.hero h1{color:#fff}
+.hero .lead{color:#b8c8da}
+.hero .btn-primary{background:#fff;color:var(--navy)}
+.hero .btn-primary:hover{background:#e6f0fa}
+.hero .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.hero .btn-line:hover{border-color:#fff;color:#fff}
+.hero .screen{box-shadow:0 34px 70px -30px rgba(0,0,0,.75);outline:1px solid rgba(255,255,255,.10)}
+.hero .lecture figcaption{color:#93a8bf}
+.rate-num{color:var(--blue)}
+.steps li{border-top-color:var(--blue)}

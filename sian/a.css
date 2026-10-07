@@ -1,0 +1,18 @@
+/* 시안 A — 흰 바탕 정돈형: 모든 구역을 흰 바탕으로, 얇은 선으로만 나눔 */
+.block.alt{background:#fff}
+main > .block{border-top:1px solid var(--line)}
+.hero{padding:88px 0 96px}
+.hero h1{letter-spacing:-.04em}
+.screen{box-shadow:0 24px 48px -28px rgba(5,40,80,.42)}
+.plans{border:1px solid var(--line);border-radius:14px;padding:36px 40px}
+.plan{padding:0 40px 0 0}
+.plan+.plan{padding:0 0 0 40px}
+.measure{background:var(--mist);border-color:transparent}
+.price-table thead th{background:var(--mist)}
+.steps li{border-top-width:3px}
+.editor svg{box-shadow:0 20px 40px -26px rgba(5,40,80,.45)}
+@media (max-width:760px){
+  .plans{padding:24px 20px}
+  .plan,.plan+.plan{padding:0}
+  .plan+.plan{padding-top:28px;margin-top:28px}
+}
