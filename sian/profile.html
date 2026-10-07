@@ -92,7 +92,7 @@ $("dl").href = PDF; $("dl").download = document.body.dataset.name;
 let pdf;
 try {
   const task = pdfjsLib.getDocument({ url: PDF, isEvalSupported: false });
-  task.onProgress = ({ loaded, total }) => { if (total) $("pct").textContent = Math.min(99, Math.round(loaded / total * 100)) + "%"; };
+  task.onProgress = ({ loaded, total }) => { const p = $("pct"); if (p && total) p.textContent = Math.min(99, Math.round(loaded / total * 100)) + "%"; };
   pdf = await task.promise;
 } catch (e) {
   msg.innerHTML = '회사소개서를 화면에 띄우지 못했습니다.<br><a href="' + PDF + '">PDF로 열기</a> 또는 위의 <b>PDF 내려받기</b>를 눌러 주세요.';
