@@ -21,9 +21,12 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"주식회사 상생기록법인","alternateName":"상생기록법인","url":"https://www.ss-r.co.kr/","logo":"https://www.ss-r.co.kr/apple-touch-icon.png","description":"사이버대학·평생교육원·교육방송·교육 콘텐츠 제작사의 강의 자막을 만듭니다.","email":"ssceo@ss-r.co.kr","telephone":"+82-2-2694-6962","foundingDate":"2024-03-21","taxID":"837-86-03311","address":{"@type":"PostalAddress","streetAddress":"효령로25길 28, 2층 11호","addressLocality":"서초구","addressRegion":"서울특별시","addressCountry":"KR"}}
-</script>
+<link rel="stylesheet" href="/guide.css">
+<script defer src="/site.js"></script>
+<script defer src="/guide-drawer.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://www.ss-r.co.kr/#org","name":"주식회사 상생기록법인","alternateName":"상생기록법인","url":"https://www.ss-r.co.kr/","logo":"https://www.ss-r.co.kr/apple-touch-icon.png","description":"사이버대학·평생교육원·교육방송·교육 콘텐츠 제작사의 강의 자막을 만듭니다.","email":"ssceo@ss-r.co.kr","telephone":"02-2694-6962","foundingDate":"2024-03-21","taxID":"837-86-03311","address":{"@type":"PostalAddress","streetAddress":"효령로25길 28, 2층 11호","addressLocality":"서초구","addressRegion":"서울특별시","addressCountry":"KR"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://www.ss-r.co.kr/#website","name":"상생기록법인","url":"https://www.ss-r.co.kr/","inLanguage":"ko-KR","publisher":{"@id":"https://www.ss-r.co.kr/#org"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "처음인데 먼저 맡겨 볼 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 처음 맡기시는 기관·회사당 한 번, 강의 3편(편당 85분까지, 합계 최대 4시간 15분)의 자막을 무료로 만들어 드립니다. 사람이 검수한 자막을 원하시는 파일 형식과 기관 지침대로 드리고, 같은 강의의 자동 자막과 오류 분석 리포트도 함께 보내 드립니다. 보내 드린 자막은 그대로 쓰셔도 됩니다. 메일 제목을 “[무료 시험 신청] 강의 3편”으로 해서 ssceo@ss-r.co.kr로 신청해 주세요."}}, {"@type": "Question", "name": "무료 시험의 오류 분석 리포트에는 무엇이 들어 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "자동 자막과 최종 자막을 한 글자씩 맞대어 만듭니다. 강의별 오류율(사람이 고친 글자 수 ÷ 자동 자막 글자 수), 오류 형태별 정리(잘못 들은 말·빠진 말, 띄어쓰기, 문장부호, 숫자·영문·수식 표기 등), 고친 곳의 실제 예시가 들어 있습니다."}}, {"@type": "Question", "name": "계약은 어떻게 맺나요?", "acceptedAnswer": {"@type": "Answer", "text": "학기·연 단위 계약이나 건별 계약으로 맺습니다. 대학·기관과는 입찰이나 단가계약으로 학기 단위 자막을 맡고, 교육 콘텐츠 제작사와는 제작사가 만드는 강의의 자막을 맡습니다."}}, {"@type": "Question", "name": "많은 강의를 맡기면 단가는 어떻게 정하나요?", "acceptedAnswer": {"@type": "Answer", "text": "사람이 검수한 자막의 기준 단가는 한국어 강의 1분 1,000원입니다(부가세 별도). 실제 단가는 전체 물량과 계약 기간을 먼저 보고, 납기와 품질 요구를 더해 정합니다. 한 번에 맡기시는 강의 시간의 합이 가장 큰 기준입니다."}}, {"@type": "Question", "name": "납기는 어떻게 정하나요?", "acceptedAnswer": {"@type": "Answer", "text": "학기 일정과 강의 공개 일정에 맞춰 정합니다. 영상이 들어오는 대로 순서대로 작업하고, 급한 강의는 협의해 먼저 처리합니다. 재촬영이나 재편집으로 바뀐 강의도 일정에 맞춰 다시 만듭니다."}}, {"@type": "Question", "name": "외국어 강의도 맡길 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "영어·중국어·일본어 강의는 기준 단가 1분 2,000원입니다(부가세 별도). 외국어 부분은 그 언어의 표기로 확인합니다. 스페인어, 인도네시아어, 태국어 등 그 밖의 언어는 협의합니다."}}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -37,7 +40,11 @@
     <nav aria-label="주요 메뉴">
       <ul class="menu">
         <li><a href="#service">두 가지 자막</a></li>
+        <li><a class="menu-try" href="/try.html">자동 자막 체험</a></li>
+        <li><a href="#trial">무료 시험</a></li>
+        <li><a href="#price">단가</a></li>
         <li><a href="#process">일하는 방식</a></li>
+        <li><a href="#clients">거래처</a></li>
         <li><a href="#about">회사</a></li>
         <li class="menu-cta"><a class="btn btn-primary" href="#contact">문의</a></li>
       </ul>
@@ -48,19 +55,23 @@
 <main id="main">
 
   <section class="hero" aria-labelledby="hero-title">
+    <div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap hero-grid">
       <div>
-        <h1 id="hero-title"><span>자동 자막은 빠르게,</span><span>마지막 확인은 사람이</span></h1>
+        <a class="promo" href="#trial"><span class="dot" aria-hidden="true"></span>처음 맡기시면 강의 3편 <b>무료</b></a>
+        <h1 id="hero-title"><span>자동 자막은 <em class="hl-blue">빠르게,</em></span><span>마지막 확인은 <em class="hl-green">사람이</em></span></h1>
         <p class="lead">사이버대학, 평생교육원, 교육방송, 교육 콘텐츠 제작사의 강의 영상에 자막을 만듭니다. 자동 자막으로 초안을 빠르게 만들고, 경력 있는 검수자가 영상을 끝까지 보며 마무리합니다.</p>
         <div class="actions">
           <a class="btn btn-primary" href="mailto:ssceo@ss-r.co.kr?subject=%5B%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%AC%B8%EC%9D%98%5D">메일로 문의하기</a>
           <a class="btn btn-line" href="tel:02-2694-6962">전화 02-2694-6962</a>
         </div>
-        <p class="dl"><a href="/files/sangsaeng-company-profile-2026.pdf" download="상생기록법인_회사소개서_2026.pdf">↓ 회사소개서 PDF 내려받기</a><span>24쪽 · 2.2MB</span></p>
+        <p class="doc-links"><a href="/profile/" target="_blank" rel="noopener">회사소개서 바로 보기 ↗</a><a href="/files/sangsaeng-company-profile-2026.pdf" download="상생기록법인_회사소개서_2026.pdf">PDF 내려받기</a><span class="meta">24쪽 · 2.2MB</span></p>
       </div>
 
       <figure class="lecture">
-        <div class="screen">
+        <div class="tilt">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="screen">
           <svg class="slide" viewBox="0 0 640 360" aria-hidden="true">
             <text x="40" y="62" fill="#eaf2fb" font-size="27" font-weight="700">미분의 정의</text>
             <rect x="40" y="74" width="52" height="3" rx="1.5" fill="#22c4ed"/>
@@ -79,11 +90,21 @@
             <circle cx="488" cy="208.5" r="5.5" fill="#ffffff"/>
             <text x="483" y="270" fill="#9fb3c8" font-size="14">a</text>
           </svg>
-          <p class="caption" aria-hidden="true">오늘은 미분의 <span class="fix"><del>정이</del><ins>정의</ins></span>를 살펴보겠습니다</p>
-          <div class="playbar" aria-hidden="true"><span></span></div>
+            <span class="status" data-state="ok" aria-hidden="true">검수 완료</span>
+            <p class="caption" aria-hidden="true">오늘은 미분의 <del class="tok err">정이</del><span class="tok ok">정의</span>를 살펴보겠습니다</p>
+            <div class="playbar" aria-hidden="true"><span></span></div>
+          </div>
         </div>
-        <figcaption>자동 자막이 ‘정이’로 받아 쓴 말을 검수자가 ‘정의’로 고쳤습니다.</figcaption>
+        <figcaption class="legend"><span><i class="r"></i>자동 자막이 틀린 곳</span><span><i class="g"></i>검수자가 고친 곳</span><a class="try-cta" href="/try.html"><span class="play" aria-hidden="true"></span><span class="tt"><b>내 강의로 직접 해 보기</b><small>영상 앞 5분 · 무료 · 가입 없이</small></span></a></figcaption>
       </figure>
+    </div>
+    <div class="wrap">
+      <ul class="stats">
+        <li><b data-count="299">299</b><span>과목</span><small>2026년 사이버대학 3곳 자막</small></li>
+        <li><b data-count="18">18</b><span>건</span><small>최근 2년 수행한 자막 사업</small></li>
+        <li><b data-count="15">15</b><span>곳</span><small>함께 일한 기관·기업</small></li>
+        <li class="g"><b data-count="0.3" data-dec="1">0.3</b><span>%</span><small>사람이 검수한 자막 오류율</small></li>
+      </ul>
     </div>
   </section>
 
@@ -92,9 +113,9 @@
       <h2 id="service-title">두 가지 자막</h2>
       <p class="section-lead">강의의 쓰임에 맞춰 고르시면 됩니다.</p>
 
-      <div class="plans">
-        <article class="plan">
-          <h3>자동 자막</h3>
+      <div class="plans reveal">
+        <article class="plan has-more">
+          <h3>자동 자막<span class="chip b">빠르게</span></h3>
           <p class="rate">
             <span class="rate-label">오류율</span>
             <span class="rate-num"><small>약</small>5%</span>
@@ -107,9 +128,10 @@
             <li>많은 강의에 빠르게 자막을 달아야 할 때</li>
             <li>말이 또렷한 한국어 강의</li>
           </ul>
+          <p class="plan-links"><a class="more" href="/guide/auto-subtitles.html">자동 자막 자세히</a><a class="try-link" href="/try.html">직접 해 보기</a></p>
         </article>
-        <article class="plan">
-          <h3>사람이 검수한 자막</h3>
+        <article class="plan human has-more">
+          <h3>사람이 검수한 자막<span class="chip g">정확하게</span></h3>
           <p class="rate">
             <span class="rate-label">오류율</span>
             <span class="rate-num"><small>약</small>0.3%</span>
@@ -123,6 +145,7 @@
             <li>수식, 영어, 외국어가 많은 강의</li>
             <li>시험과 평가에 쓰는 강의</li>
           </ul>
+          <a class="more" href="/guide/reviewed-subtitles.html">사람이 검수한 자막 자세히</a>
         </article>
       </div>
 
@@ -130,24 +153,77 @@
         <summary>숫자는 이렇게 셉니다</summary>
         <div class="measure-body">
           <p>자동 자막과, 검수자가 영상을 끝까지 보며 완성한 최종 자막을 한 글자씩 맞대어 봅니다.</p>
+          <p class="example"><b>자동 자막</b>오늘은 미분의 <span class="er">정이</span>를 살펴보겠습니다<br><b>최종 자막</b>오늘은 미분의 <span class="ok">정의</span>를 살펴보겠습니다<br><b>오류율</b>고친 글자 1자 ÷ 자동 자막 19자 ≈ 5.3%</p>
           <p>사람이 바꾸고, 지우고, 넣은 글자는 이유를 따지지 않고 모두 오류로 셉니다. 띄어쓰기와 문장부호도 한 글자입니다.</p>
           <p class="formula">오류율 = 고친 글자 수 ÷ 자동 자막 글자 수, 정확도 = 100% − 오류율</p>
           <p>사람이 검수한 자막은 검수를 마친 자막을 다른 사람이 다시 확인해 같은 방식으로 셉니다.</p>
           <p>줄나눔과 싱크는 글자가 아니므로 이 숫자에 넣지 않고 따로 확인합니다.</p>
           <p class="note">※ 자체 측정값입니다. 여러 기관의 강의 가운데 낮은 쪽 값을 적었으며, 강의 주제와 발음, 음질에 따라 달라집니다.</p>
+          <p><a class="more" href="/guide/error-rate.html">오류율 셈법 자세히</a></p>
         </div>
       </details>
 
       <div class="extras">
-        <div class="extra">
+        <div class="extra reveal has-more">
           <h3>이중언어 강의</h3>
-          <p>한국어와 영어, 중국어, 일본어, 스페인어가 함께 나오는 강의도 자막을 만듭니다. 외국어 부분은 그 언어의 표기 그대로 확인합니다.</p>
+          <p>영어, 중국어, 일본어가 함께 나오는 강의도 자막을 만듭니다. 외국어 부분은 그 언어의 표기 그대로 확인합니다. 스페인어, 인도네시아어, 태국어 등 그 밖의 언어는 협의합니다.</p>
+          <a class="more" href="/guide/math-foreign.html">수식·외국어 강의 자세히</a>
         </div>
-        <div class="extra">
-          <h3>먼저 확인해 보세요</h3>
-          <p>강의 3편을 먼저 맡겨 보시면 과목 전체의 자막 품질을 미리 가늠하실 수 있습니다.</p>
-          <a class="btn btn-line" href="mailto:ssceo@ss-r.co.kr?subject=%5B%EC%8B%9C%ED%97%98%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8">메일로 시험 신청하기</a>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trial" id="trial" aria-labelledby="trial-title">
+    <div class="wrap">
+      <ol class="ladder reveal" aria-label="자동 자막을 확인하는 세 단계">
+        <li><span class="ld-no">1</span><p><b>자동 자막 체험</b><span>누구나 · 영상 앞 5분 · 화면에서 보기</span></p><a class="ld-go" href="/try.html">지금 해 보기</a></li>
+        <li><span class="ld-no">2</span><p><b>초대 코드 체험</b><span>강의 3편 · 편당 100분 · 자막 파일 받기</span></p><a class="ld-go" href="mailto:ssceo@ss-r.co.kr?subject=%5B%EC%B4%88%EB%8C%80%20%EC%BD%94%EB%93%9C%20%EC%9A%94%EC%B2%AD%5D">초대 코드 요청</a></li>
+        <li class="ld-trial"><span class="ld-no">3</span><p><b>무료 시험</b><span>사람이 검수한 자막 + 오류 분석 리포트</span></p><span class="ld-here">아래에서 신청</span></li>
+      </ol>
+    </div>
+    <div class="wrap trial-grid">
+      <div class="reveal">
+        <p class="eyebrow"><span class="badge-free">무료</span>처음 맡기시는 기관·회사</p>
+        <h2 id="trial-title"><span>강의 3편, 무료로</span> <span>먼저 맡겨 보세요</span></h2>
+        <p class="trial-lead">우리 강의로 직접 보시고 정하시면 됩니다. 사람이 검수한 자막과 같은 강의의 자동 자막을 함께 보내 드려, 두 가지를 나란히 비교하실 수 있습니다.</p>
+        <a class="btn btn-green" href="mailto:ssceo@ss-r.co.kr?subject=%5B%EB%AC%B4%EB%A3%8C%20%EC%8B%9C%ED%97%98%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8">메일로 무료 시험 신청하기</a>
+        <p class="trial-mail">메일 제목 <b>[무료 시험 신청] 강의 3편</b> · ssceo@ss-r.co.kr</p>
+        <p class="trial-more"><a class="more light" href="/guide/free-trial.html">무료 시험 자세히</a></p>
+      </div>
+      <ul class="checks reveal">
+        <li><b>강의 3편, 편당 85분까지</b><span>합계 최대 4시간 15분</span></li>
+        <li><b>사람이 검수한 자막으로</b><span>원하시는 파일 형식과 기관 지침대로</span></li>
+        <li><b>자동 자막과 오류 분석 리포트도 함께</b><span>강의별 오류율과 오류 형태(잘못 들은 말, 띄어쓰기, 문장부호, 숫자·수식 표기 등)를 정리해 드립니다</span></li>
+        <li><b>보내 드린 자막은 그대로 쓰셔도 됩니다</b><span>맡기신 영상은 자막 작업에만 씁니다</span></li>
+        <li><b>기관·회사당 한 번</b><span>학기 초처럼 일이 몰리는 때에는 납기를 협의합니다</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="price" aria-labelledby="price-title">
+    <div class="wrap price-grid">
+      <div class="reveal">
+        <h2 id="price-title">기준 단가</h2>
+        <p class="section-lead">강의 1분 기준, 부가세 별도입니다.</p>
+        <table class="price-table">
+          <thead><tr><th scope="col">자막</th><th scope="col">1분당</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">사람이 검수한 자막<span>한국어 강의</span></th><td>1,000원</td></tr>
+            <tr><th scope="row">사람이 검수한 자막<span>영어, 중국어, 일본어 강의</span></th><td>2,000원</td></tr>
+            <tr><th scope="row">사람이 검수한 자막<span>그 밖의 외국어 강의</span></th><td class="ask">협의</td></tr>
+            <tr><th scope="row">자동 자막<span>많은 강의를 한 번에 맡기실 때</span></th><td class="ask">협의</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="factors reveal">
+        <h3>실제 단가는 이렇게 정합니다</h3>
+        <ol>
+          <li><b>전체 물량</b><span>한 번에 맡기시는 강의 시간의 합. 가장 큰 기준입니다.</span></li>
+          <li><b>계약 기간</b><span>한 학기, 한 해처럼 이어지는 계약인지 봅니다.</span></li>
+          <li><b>납기</b><span>영상이 들어오는 속도와 납품 속도를 봅니다.</span></li>
+          <li><b>품질 요구</b><span>검수 수준과 표기 지침, 파일 규격을 봅니다.</span></li>
+        </ol>
+        <p class="more-row"><a class="btn btn-primary" href="mailto:ssceo@ss-r.co.kr?subject=%5B%EA%B2%AC%EC%A0%81%20%EB%AC%B8%EC%9D%98%5D">메일로 견적 문의하기</a><a class="more" href="/guide/price.html">단가와 견적 자세히</a></p>
       </div>
     </div>
   </section>
@@ -168,7 +244,7 @@
           <h3>다듬기와 줄나눔</h3>
           <p>강의 전체 맥락을 보고 표기를 고르고, 읽기 좋은 길이로 줄을 나눕니다.</p>
         </li>
-        <li>
+        <li class="human">
           <span class="step-no">3</span>
           <h3>사람 검수</h3>
           <p>검수자가 영상, 자막, 음성 파형을 한 화면에 놓고 끝까지 확인합니다.</p>
@@ -181,8 +257,9 @@
           <p class="formats">SMI, SRT, VTT, HWP</p>
         </li>
       </ol>
+      <p class="more-row"><a class="more" href="/guide/process.html">제작 공정 자세히</a><a class="more" href="/guide/quality.html">품질 관리 자세히</a><a class="more" href="/guide/delivery.html">납품 규격과 납기 자세히</a></p>
 
-      <div class="tools">
+      <div class="tools reveal">
         <figure class="editor">
           <svg viewBox="0 0 720 430" role="img" aria-label="검수 프로그램 화면 구성: 왼쪽 위 영상, 오른쪽 자막 목록, 아래 음성 파형">
             <defs><clipPath id="win"><rect width="720" height="430" rx="10"/></clipPath></defs>
@@ -256,18 +333,44 @@
     </div>
   </section>
 
+  <section class="block" id="clients" aria-labelledby="clients-title">
+    <div class="wrap">
+      <h2 id="clients-title">함께 일하는 곳</h2>
+      <p class="section-lead">2024년부터 강의 자막을 맡은 기관과 발주처입니다. 직접 계약한 곳과 제작사를 통해 맡은 곳을 함께 적었습니다.</p>
+      <p class="client-band reveal"><span class="grp"><b data-count="3435">3,435</b><em>편</em></span><span class="grp"><b data-count="657">657</b><em>시간</em></span><span class="grp"><b data-count="114">114</b><em>과목</em></span><span class="desc">2026년 2학기, 한 사이버대학에서 9월 초까지 자막을 단 강의입니다.</span></p>
+      <div class="client-groups">
+        <div class="client-group reveal">
+          <h3>자막을 맡은 기관<small>7곳</small></h3>
+          <ul class="client-list">
+            <li>고려사이버대학교</li><li>사이버한국외국어대학교</li><li>서울사이버대학교</li><li>부산디지털대학교</li>
+            <li>한국기술교육대학교</li><li>EBS 중학프리미엄</li><li>한국교육개발원<small>방송중·고</small></li>
+          </ul>
+        </div>
+        <div class="client-group reveal">
+          <h3>발주처 기업 (교육 콘텐츠 제작사)<small>8곳</small></h3>
+          <ul class="client-list">
+            <li>비즈엠디지</li><li>위지런</li><li>페이도커뮤니케이션</li><li>플립온코리아</li>
+            <li>스튜디오 참</li><li>아라소프트</li><li>트리짓소프트웨어</li><li>이음콘텐츠</li>
+          </ul>
+        </div>
+      </div>
+      <p class="client-note">※ 서울사이버대학교, 한국기술교육대학교, EBS 중학프리미엄, 한국교육개발원 자막은 제작사를 통해 맡았습니다.</p>
+      <p class="more-row"><a class="more" href="/guide/track-record.html">기관별 실적과 연혁 자세히</a></p>
+    </div>
+  </section>
+
   <section class="block alt" id="about" aria-labelledby="about-title">
     <div class="wrap about-grid">
-      <div>
+      <div class="reveal">
         <h2 id="about-title">상생기록법인</h2>
-        <p class="about-lead">‘상생’은 서로 살린다는 뜻입니다. 맡기는 곳과 일하는 사람이 함께 오래 가는 방식으로 일합니다.</p>
+        <p class="about-lead">‘상생’은 서로 살린다는 뜻입니다. 맡기는 곳과 일하는 사람이 함께 오래 가도록 일합니다.</p>
         <ul class="about-facts">
           <li><b>설립</b>2024년 3월 21일</li>
           <li><b>대표이사</b>이승재</li>
           <li><b>소재지</b>서울특별시 서초구 효령로25길 28, 2층 11호 (방배동, 이레힐)</li>
         </ul>
       </div>
-      <div>
+      <div class="reveal">
         <h3 class="principles-title">우리가 지키는 것</h3>
         <ul class="principles">
           <li><strong>숫자는 엄격하게 셉니다.</strong><span>사람이 고친 글자는 모두 오류로 셉니다.</span></li>
@@ -276,20 +379,64 @@
           <li><strong>맡기신 영상은 자막 작업에만 씁니다.</strong><span>다른 용도로 쓰거나 밖으로 내보내지 않습니다.</span></li>
         </ul>
         <p class="people">교육 강의 자막 15년 경력의 관리자와 40여 명의 숙련 검수자가 함께합니다.</p>
+        <p class="more-row"><a class="more" href="/guide/team.html">사람과 운영 체계 자세히</a></p>
       </div>
     </div>
   </section>
 
-  <section class="block" id="contact" aria-labelledby="contact-title">
+  <section class="block" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <div>
+        <h2 id="faq-title">자주 묻는 질문</h2>
+        <p class="section-lead">맡기시기 전에 많이 물으시는 것입니다. 궁금한 곳을 눌러 보세요.</p>
+        <div class="faq-list">
+          <details open><summary>처음인데 먼저 맡겨 볼 수 있나요?</summary><p>네. 처음 맡기시는 기관·회사당 한 번, 강의 3편(편당 85분까지, 합계 최대 4시간 15분)의 자막을 무료로 만들어 드립니다. 사람이 검수한 자막을 원하시는 파일 형식과 기관 지침대로 드리고, 같은 강의의 자동 자막과 오류 분석 리포트도 함께 보내 드립니다. 보내 드린 자막은 그대로 쓰셔도 됩니다. 메일 제목을 “[무료 시험 신청] 강의 3편”으로 해서 ssceo@ss-r.co.kr로 신청해 주세요.</p></details>
+          <details><summary>무료 시험의 오류 분석 리포트에는 무엇이 들어 있나요?</summary><p>자동 자막과 최종 자막을 한 글자씩 맞대어 만듭니다. 강의별 오류율(사람이 고친 글자 수 ÷ 자동 자막 글자 수), 오류 형태별 정리(잘못 들은 말·빠진 말, 띄어쓰기, 문장부호, 숫자·영문·수식 표기 등), 고친 곳의 실제 예시가 들어 있습니다.</p></details>
+          <details><summary>계약은 어떻게 맺나요?</summary><p>학기·연 단위 계약이나 건별 계약으로 맺습니다. 대학·기관과는 입찰이나 단가계약으로 학기 단위 자막을 맡고, 교육 콘텐츠 제작사와는 제작사가 만드는 강의의 자막을 맡습니다.</p></details>
+          <details><summary>많은 강의를 맡기면 단가는 어떻게 정하나요?</summary><p>사람이 검수한 자막의 기준 단가는 한국어 강의 1분 1,000원입니다(부가세 별도). 실제 단가는 전체 물량과 계약 기간을 먼저 보고, 납기와 품질 요구를 더해 정합니다. 한 번에 맡기시는 강의 시간의 합이 가장 큰 기준입니다.</p></details>
+          <details><summary>납기는 어떻게 정하나요?</summary><p>학기 일정과 강의 공개 일정에 맞춰 정합니다. 영상이 들어오는 대로 순서대로 작업하고, 급한 강의는 협의해 먼저 처리합니다. 재촬영이나 재편집으로 바뀐 강의도 일정에 맞춰 다시 만듭니다.</p></details>
+          <details><summary>외국어 강의도 맡길 수 있나요?</summary><p>영어·중국어·일본어 강의는 기준 단가 1분 2,000원입니다(부가세 별도). 외국어 부분은 그 언어의 표기로 확인합니다. 스페인어, 인도네시아어, 태국어 등 그 밖의 언어는 협의합니다.</p></details>
+        </div>
+        <p class="more-row"><a class="more" href="/guide/faq.html">질문 16개 모두 보기</a></p>
+      </div>
+      <nav class="hub" aria-label="자세히 알아보기">
+        <h3 class="hub-title">자세히 알아보기</h3>
+          <div class="hub-group"><h3>자막</h3><p><a class="more" href="/guide/auto-subtitles.html">자동 자막</a><a class="more" href="/guide/reviewed-subtitles.html">사람이 검수한 자막</a><a class="more" href="/guide/error-rate.html">오류율 셈법</a><a class="more" href="/guide/math-foreign.html">수식·외국어 강의</a></p></div>
+          <div class="hub-group"><h3>맡기기</h3><p><a class="more" href="/guide/price.html">단가와 견적</a><a class="more" href="/guide/free-trial.html">강의 3편 무료 시험</a><a class="more" href="/guide/faq.html">자주 묻는 질문</a></p></div>
+          <div class="hub-group"><h3>일하는 방식</h3><p><a class="more" href="/guide/process.html">제작 공정</a><a class="more" href="/guide/quality.html">품질 관리</a><a class="more" href="/guide/delivery.html">납품 규격과 납기</a><a class="more" href="/guide/team.html">사람과 운영 체계</a></p></div>
+          <div class="hub-group"><h3>회사</h3><p><a class="more" href="/guide/track-record.html">실적과 연혁</a></p></div>
+      </nav>
+    </div>
+  </section>
+
+  <section class="block" id="profile" aria-labelledby="profile-title">
+    <div class="wrap profile-grid">
+      <a class="cover reveal" href="/profile/" target="_blank" rel="noopener" aria-label="회사소개서 바로 보기 (새 창)">
+        <img src="/files/sangsaeng-company-profile-2026-cover.jpg" alt="회사소개서 2026 표지" width="560" height="809" loading="lazy">
+        <span class="cover-tag">24쪽</span>
+      </a>
+      <div class="reveal">
+        <h2 id="profile-title">회사소개서</h2>
+        <p class="section-lead">회사 소개, 두 가지 자막, 일하는 방식, 맡기는 방법을 한 권에 담았습니다. 내부 회의 자료로 그대로 쓰셔도 됩니다.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/profile/" target="_blank" rel="noopener">바로 보기 ↗</a>
+          <a class="btn btn-line" href="/files/sangsaeng-company-profile-2026.pdf" download="상생기록법인_회사소개서_2026.pdf">PDF 내려받기</a>
+        </div>
+        <p class="meta">2026년판 · 24쪽 · 2.2MB · 내려받지 않아도 PC와 휴대폰에서 바로 보입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="contact" aria-labelledby="contact-title">
     <div class="wrap contact-grid">
       <div>
         <h2 id="contact-title">문의</h2>
-        <p class="section-lead">과목 수, 강의 길이, 필요한 파일 형식을 알려 주시면 일정과 방식을 안내해 드립니다.</p>
+        <p class="section-lead">전체 물량(과목 수·강의 시간), 계약 기간, 납기, 파일 형식을 알려 주시면 견적과 일정을 안내해 드립니다.</p>
       </div>
       <dl class="reach">
         <div><dt>메일</dt><dd><a href="mailto:ssceo@ss-r.co.kr?subject=%5B%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%AC%B8%EC%9D%98%5D">ssceo@ss-r.co.kr</a></dd></div>
         <div><dt>전화</dt><dd><a href="tel:02-2694-6962">02-2694-6962</a></dd></div>
-        <div><dt>회사소개서</dt><dd><a class="file" href="/files/sangsaeng-company-profile-2026.pdf" download="상생기록법인_회사소개서_2026.pdf">PDF 내려받기 <small>(24쪽, 2.2MB)</small></a></dd></div>
+        <div><dt>회사소개서</dt><dd class="links"><a href="/profile/" target="_blank" rel="noopener">바로 보기 ↗</a><a href="/files/sangsaeng-company-profile-2026.pdf" download="상생기록법인_회사소개서_2026.pdf">PDF 내려받기</a></dd></div>
         <div><dt>주소</dt><dd class="addr">서울특별시 서초구 효령로25길 28, 2층 11호 (방배동, 이레힐)</dd></div>
       </dl>
     </div>

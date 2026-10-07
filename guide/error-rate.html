@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>자막 오류율 계산법 — 정확도와 오류율을 세는 원칙 | 상생기록법인</title>
+<meta name="description" content="자막 오류율은 사람이 고친 글자 수를 자동 자막 글자 수로 나눠 셉니다. 띄어쓰기와 문장부호도 한 글자로 세고, 줄나눔과 싱크는 따로 확인합니다. 계산 예시와 세는 원칙 다섯 가지를 정리했습니다.">
+<link rel="canonical" href="https://www.ss-r.co.kr/guide/error-rate.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.ss-r.co.kr/guide/error-rate.html">
+<meta property="og:site_name" content="상생기록법인">
+<meta property="og:title" content="자막 오류율 계산법 — 정확도와 오류율을 세는 원칙 | 상생기록법인">
+<meta property="og:description" content="자막 오류율은 사람이 고친 글자 수를 자동 자막 글자 수로 나눠 셉니다. 띄어쓰기와 문장부호도 한 글자로 세고, 줄나눔과 싱크는 따로 확인합니다. 계산 예시와 세는 원칙 다섯 가지를 정리했습니다.">
+<meta property="og:image" content="https://www.ss-r.co.kr/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#054c7e">
+<link rel="icon" href="/logo-mark.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/guide.css">
+<script defer src="/guide-drawer.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://www.ss-r.co.kr/"},{"@type":"ListItem","position":2,"name":"자세히 알아보기","item":"https://www.ss-r.co.kr/guide/"},{"@type":"ListItem","position":3,"name":"오류율 셈법","item":"https://www.ss-r.co.kr/guide/error-rate.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"사람이 고친 글자는 모두 오류로 셉니다","description":"자막 오류율은 사람이 고친 글자 수를 자동 자막 글자 수로 나눠 셉니다. 띄어쓰기와 문장부호도 한 글자로 세고, 줄나눔과 싱크는 따로 확인합니다. 계산 예시와 세는 원칙 다섯 가지를 정리했습니다.","url":"https://www.ss-r.co.kr/guide/error-rate.html","inLanguage":"ko-KR","isPartOf":{"@id":"https://www.ss-r.co.kr/#website"},"publisher":{"@id":"https://www.ss-r.co.kr/#org"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"띄어쓰기 하나만 달라도 오류로 세나요?","acceptedAnswer":{"@type":"Answer","text":"네. 띄어쓰기와 문장부호도 한 글자로 세고, 사람이 바꾸고 지우고 넣은 글자는 이유를 따지지 않고 모두 오류로 셉니다."}},{"@type":"Question","name":"줄나눔이나 싱크가 틀린 것도 오류율에 들어가나요?","acceptedAnswer":{"@type":"Answer","text":"들어가지 않습니다. 줄나눔과 싱크는 글자가 아니므로 이 숫자에 넣지 않고 따로 확인합니다."}},{"@type":"Question","name":"우리 기관 강의의 오류율도 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"강의 3편 무료 시험을 신청하시면 같은 방식으로 센 강의별 오류율을 오류 분석 리포트로 드립니다."}}]}</script>
+</head>
+<body class="g-page">
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="/" aria-label="상생기록법인 첫 화면">
+      <img src="/logo-mark.svg" alt="" width="34" height="34">
+      <span>상생기록법인</span>
+    </a>
+    <nav aria-label="주요 메뉴">
+      <ul class="menu">
+        <li><a href="/#service">두 가지 자막</a></li>
+        <li><a href="/#trial">무료 시험</a></li>
+        <li><a href="/#price">단가</a></li>
+        <li><a href="/#process">일하는 방식</a></li>
+        <li><a href="/#clients">거래처</a></li>
+        <li><a href="/#about">회사</a></li>
+        <li class="menu-cta"><a class="btn btn-primary" href="/#contact">문의</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="g-main">
+<div class="wrap g-wrap">
+<nav class="g-crumb" aria-label="현재 위치"><ol><li><a href="/">홈</a></li><li><a href="/guide/index.html">자세히 알아보기</a></li><li aria-current="page">오류율 셈법</li></ol></nav>
+<article class="guide" data-slug="error-rate" aria-labelledby="g-title-error-rate">
+<h1 id="g-title-error-rate">사람이 고친 글자는 모두 오류로 셉니다</h1>
+<p class="g-lead">자동 자막과, 검수자가 끝까지 보며 완성한 최종 자막을 한 글자씩 맞대어 봅니다. 좋아 보이는 숫자보다 정직한 숫자를 드립니다.</p>
+<div class="g-cards">
+  <div class="g-card"><h3>오류율</h3><p>고친 글자 수 ÷ 자동 자막 글자 수</p></div>
+  <div class="g-card"><h3>정확도</h3><p>100% − 오류율</p></div>
+</div>
+<h2>예시</h2>
+<div class="g-example">
+  <p><b>자동 자막</b><span>오늘은 미분의 <span class="t-red">정이</span>를 살펴보겠습니다</span></p>
+  <p><b>최종 자막</b><span>오늘은 미분의 <span class="t-green">정의</span>를 살펴보겠습니다</span></p>
+</div>
+<div class="g-table-wrap" role="region" aria-label="표: 항목, 값" tabindex="0">
+<table class="g-table">
+<thead><tr><th scope="col" class="g-l">항목</th><th scope="col" class="g-r">값</th></tr></thead>
+<tbody>
+  <tr><th scope="row" class="g-l">고친 글자</th><td class="g-r">1자 (이 → 의)</td></tr>
+  <tr><th scope="row" class="g-l">자동 자막 글자</th><td class="g-r">19자 (띄어쓰기 포함)</td></tr>
+  <tr><th scope="row" class="g-l">오류율</th><td class="g-r"><span class="t-blue">1 ÷ 19 ≈ 5.3%</span></td></tr>
+</tbody>
+</table>
+</div>
+<p>이 문장 하나만 보면 오류율은 약 5.3%, 정확도는 약 94.7%입니다.</p>
+<h2>세는 원칙</h2>
+<ul class="g-list">
+  <li>사람이 바꾸고, 지우고, 넣은 글자는 이유를 따지지 않고 모두 오류로 셉니다.</li>
+  <li>띄어쓰기와 문장부호도 한 글자입니다.</li>
+  <li>여러 강의를 합칠 때는 강의별 비율의 평균이 아니라, 고친 글자의 합계를 자동 자막 글자의 합계로 나눕니다.</li>
+  <li>사람이 검수한 자막은 검수를 마친 자막을 다른 사람이 다시 확인해 같은 방식으로 셉니다.</li>
+  <li>줄나눔과 싱크는 글자가 아니므로 이 숫자에 넣지 않고 따로 확인합니다.</li>
+</ul>
+<h2>두 가지 자막의 오류율</h2>
+<ul class="g-kpis">
+  <li class="blue"><b>약 5%</b><span>자동 자막</span><small>정확도 약 95% · 100글자에 약 5글자를 사람이 고칩니다</small></li>
+  <li class="green"><b>약 0.3%</b><span>사람이 검수한 자막</span><small>정확도 약 99.7% · 1,000글자에 약 3글자가 남습니다</small></li>
+</ul>
+<p class="g-note">※ 자체 측정값입니다. 강의 주제와 발음, 음질에 따라 달라집니다.</p>
+<p>강의 3편 무료 시험의 오류 분석 리포트도 같은 방식으로 셉니다. 맡기신 강의의 강의별 오류율을 직접 확인하실 수 있습니다.</p>
+<section class="g-faq" aria-labelledby="g-faq-error-rate">
+<h2 id="g-faq-error-rate">자주 묻는 질문</h2>
+<details open><summary>띄어쓰기 하나만 달라도 오류로 세나요?</summary><p>네. 띄어쓰기와 문장부호도 한 글자로 세고, 사람이 바꾸고 지우고 넣은 글자는 이유를 따지지 않고 모두 오류로 셉니다.</p></details>
+<details><summary>줄나눔이나 싱크가 틀린 것도 오류율에 들어가나요?</summary><p>들어가지 않습니다. 줄나눔과 싱크는 글자가 아니므로 이 숫자에 넣지 않고 따로 확인합니다.</p></details>
+<details><summary>우리 기관 강의의 오류율도 알 수 있나요?</summary><p>강의 3편 무료 시험을 신청하시면 같은 방식으로 센 강의별 오류율을 오류 분석 리포트로 드립니다.</p></details>
+</section>
+<nav class="g-related" aria-labelledby="g-rel-error-rate">
+<h2 id="g-rel-error-rate">함께 보면 좋은 내용</h2>
+<ul>
+  <li><a class="more" href="/guide/auto-subtitles.html">자동 자막</a></li>
+  <li><a class="more" href="/guide/reviewed-subtitles.html">사람이 검수한 자막</a></li>
+  <li><a class="more" href="/guide/free-trial.html">무료 시험</a></li>
+  <li><a class="more" href="/guide/quality.html">품질 관리</a></li>
+</ul>
+</nav>
+</article>
+</div>
+
+<section class="g-band" aria-labelledby="g-band-title">
+  <div class="wrap g-band-in">
+    <div class="g-band-copy">
+      <p class="g-band-eyebrow"><span class="g-badge-free">무료</span>처음 맡기시는 기관·회사</p>
+      <h2 id="g-band-title">강의 3편, 무료로 먼저 맡겨 보세요</h2>
+    </div>
+    <div class="g-band-act">
+      <a class="btn btn-green more" href="/guide/free-trial.html">무료 시험 알아보기</a>
+      <p class="g-band-contact">메일 <a href="mailto:ssceo@ss-r.co.kr?subject=%5B%EB%AC%B4%EB%A3%8C%20%EC%8B%9C%ED%97%98%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8">ssceo@ss-r.co.kr</a><span aria-hidden="true"> · </span>전화 <a href="tel:02-2694-6962">02-2694-6962</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="foot-brand"><img src="/logo-mark.svg" alt="" width="28" height="28">㈜상생기록법인</p>
+    <p>대표이사 이승재<span class="gap"></span>사업자등록번호 837-86-03311</p>
+    <p>서울특별시 서초구 효령로25길 28, 2층 11호 (방배동, 이레힐)</p>
+    <p><a href="mailto:ssceo@ss-r.co.kr">ssceo@ss-r.co.kr</a><span class="gap"></span><a href="tel:02-2694-6962">02-2694-6962</a></p>
+    <p class="copy">© 상생기록법인</p>
+  </div>
+</footer>
+</body>
+</html>
