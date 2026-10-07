@@ -212,3 +212,23 @@ body{padding-bottom:64px}
   .js .reveal{opacity:1;transform:none;transition:none}
   .steps li::before{transform:scaleX(1);transition:none}
 }
+
+/* 자세히 링크 자리 · 자주 묻는 질문 · 자세히 알아보기 */
+.plan a.more,.extra a.more{margin-top:14px}
+.more-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin:22px 0 0}
+.trial-more{margin:12px 0 0}
+.faq-grid{display:grid;grid-template-columns:7fr 4fr;gap:48px;align-items:start}
+.faq-list details{border:1px solid var(--line);border-radius:12px;background:#fff;margin:0 0 10px;transition:border-color .2s,box-shadow .2s}
+.faq-list details[open]{border-color:#b9d3ea;box-shadow:0 14px 30px -26px rgba(5,40,80,.55)}
+.faq-list summary{padding:15px 20px;cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:14px;letter-spacing:-.01em}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";font-weight:400;color:var(--blue);font-size:22px;line-height:1.1}
+.faq-list details[open] summary::after{content:"–"}
+.faq-list details p{margin:0;padding:0 20px 16px;color:var(--ink)}
+.hub{padding:24px 24px 18px;border-radius:14px;background:#f4f8fc;position:sticky;top:84px}
+.hub-title{font-size:19px;letter-spacing:-.02em;margin:0 0 10px}
+.hub-group{padding:10px 0;border-top:1px solid var(--line)}
+.hub-group:first-of-type{border-top:0}
+.hub-group h3{font-size:13.5px;color:var(--muted);font-weight:700;margin:0 0 4px}
+.hub-group p{display:flex;flex-wrap:wrap;gap:4px 16px;margin:0}
+@media (max-width:960px){.faq-grid{grid-template-columns:1fr;gap:28px}.hub{position:static}}
