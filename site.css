@@ -40,6 +40,10 @@ a{color:var(--blue)}
 .hero h1 span{display:block}
 .lead{font-size:clamp(16px,1.55vw,18px);color:var(--muted);margin:0 0 30px;max-width:31em}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
+.dl{margin:18px 0 0;font-size:15px}
+.dl a{font-weight:700;text-decoration:none}
+.dl a:hover{text-decoration:underline}
+.dl span{color:var(--muted);font-size:13.5px;margin-left:8px}
 
 /* 강의 화면 (교정 표시) */
 .lecture{margin:0}
@@ -143,6 +147,8 @@ a{color:var(--blue)}
 .reach a{font-size:clamp(23px,2.8vw,32px);font-weight:800;letter-spacing:-.02em;color:var(--navy);text-decoration:none}
 .reach a:hover{color:var(--blue)}
 .reach .addr{font-size:16px;font-weight:600}
+.reach .file{font-size:clamp(18px,2vw,22px)}
+.reach .file small{font-size:14px;font-weight:600;color:var(--muted)}
 
 /* 바닥글 */
 .site-foot{background:var(--ink);color:#b8c6d6;font-size:14px;line-height:1.8}
