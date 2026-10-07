@@ -123,8 +123,8 @@ a{color:var(--blue)}
 .about-grid{display:grid;grid-template-columns:5fr 7fr;gap:56px}
 .about-lead{font-size:clamp(19px,2vw,22px);line-height:1.6;letter-spacing:-.02em;margin:0}
 .about-facts{margin:28px 0 0;padding:0;list-style:none;color:var(--muted);font-size:15.5px}
-.about-facts li{margin:2px 0}
-.about-facts b{color:var(--ink);font-weight:700;margin-right:10px}
+.about-facts li{display:grid;grid-template-columns:5em 1fr;gap:10px;margin:4px 0}
+.about-facts b{color:var(--ink);font-weight:700}
 .principles-title{font-size:15px;color:var(--muted);font-weight:700;margin:4px 0 14px}
 .principles{list-style:none;margin:0;padding:0}
 .principles li{padding:14px 0;border-top:1px solid var(--line)}
