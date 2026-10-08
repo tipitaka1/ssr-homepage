@@ -31,7 +31,7 @@
       tierScore: { S: 50, A: 35, B: 30, C: 25 }, // i5 품사 등급 점수
       distBase: 50,         // i5 거리 점수 최대값 (DIST_SCORE_BASE)
       commaShiftSlack: 10,  // i5: 바로 앞 어절이 쉼표로 끝나면, 목표와 거리 차가 이 안일 때 그 뒤로 옮김
-      thrBig: 42,           // i6: 이 길이(초)까지는 가운데에서 자름 (THR_BIG) — 서버가 켤 때 설정값 30초 × 1.4로 한 번 정한 값과 같게
+      thrBigPct: 1.4,       // i6: 길이가 최대 표시 시간 × 이 값(THR_BIG) 이하이면 가운데에서 자름 — 서버 V34처럼 작업마다 max_dur × 1.4
       cutHalf: 0.5,         // i6 Case A: 길이 × 0.5
       cutBase070: 0.7,      // i6 Case B: 시작 + 최대 표시 시간 × 0.7
       silenceGap: 2.0,      // SMI: 자막 사이 틈이 이 이상이면 &nbsp;로 지움 (MIN_SILENCE_GAP = MERGE_GAP)
@@ -42,9 +42,10 @@
     durGap: 0.5,             // 최대 표시 시간은 최소 표시 시간보다 이만큼 이상 길어야 함
     maxCps: 30,              // 자막 목록 CPS 칸 빨강 기준(SS_SubEditor 기본값)
     // 실제 연결(문지기 API, demo_api_contract.md §A). 비어 있으면 예시 강의만 되는 모드
-    apiBase: "",
-    turnstileSiteKey: "",
-    api: { pollMs: 3000, giveUpMs: 20 * 60 * 1000, ffmpegBase: "/vendor/ffmpeg/" },
+    apiBase: "https://try-api.ss-r.co.kr",
+    turnstileSiteKey: "0x4AAAAAAAFQemKuPxfd5AkHV", // Turnstile 위젯 ssr-try 의 사이트 키(공개용)
+    api: { pollMs: 3000, giveUpMs: 20 * 60 * 1000, ffmpegBase: "/vendor/ffmpeg/",
+      retryMs: [3000, 7000, 15000, 30000] }, // 잠깐 끊길 때 다시 묻기 전 기다리는 시간(5번, 약 1분)
     bridgeGap: 0.3,          // 화면 미리보기만: 자막 사이 틈이 이보다 짧으면 이어 보여 깜빡이지 않게 (파일·목록 시각은 그대로)
     // 체험 한도
     publicSeconds: 300,      // 공개 체험: 앞 5분
@@ -109,7 +110,7 @@
        관형형(-ㄴ/-ㄹ/-는/-은/-던/-적인) 뒤는 등급 없음(서버와 같음)이고, 등급 있는 자리가 없을 때 고르는 거리 순위에서도 뒤로 미룹니다(브라우저만).
        그래서 "화면"(명사)을 연결 어미 "-면"으로 보는 식의 오판이 드물게 있습니다.
      - 서버는 자를 자리가 하나도 없으면 MAX 글자 위치에서 어절 중간을 자르지만(fallback-safety), 여기서는 MAX 안의 마지막 어절 경계에서 자릅니다.
-     - i6 THR_BIG: 서버처럼 42초로 고정합니다(서버는 모듈을 불러올 때 설정값 30초 × 1.4로 한 번 계산).
+     - i6 THR_BIG: 서버(V34)처럼 작업마다 최대 표시 시간 × 1.4로 계산합니다(예전 서버는 설정값 30초 × 1.4 = 42초로 고정).
      - 시간은 서버처럼 그대로 두고(끝 늘이기 없음), 화면 미리보기에서만 짧은 틈을 이어 보입니다(bridge). */
   const SSRSplit = (function () {
     const S = CONFIG.server;
@@ -290,7 +291,7 @@
     function splitByDuration(sg, o) {
       const dur = sg.end - sg.start;
       if (dur <= o.maxDur || sg.words.length < 2) return [sg];
-      const thrBig = S.thrBig;
+      const thrBig = o.maxDur * S.thrBigPct; // THR_BIG = MAX_DUR × 1.4 — 서버와 같은 곱셈(반올림 없음)
       const target = dur <= thrBig ? sg.start + dur * S.cutHalf : sg.start + o.maxDur * S.cutBase070;
       let left = -1;
       sg.words.forEach((w, i) => { if (w.e <= target) left = i; });
@@ -869,6 +870,7 @@
   function stopRun(run) {
     run.timers.forEach(clearTimeout);
     clearInterval(run.tick);
+    if (run.liveTimer) { clearInterval(run.liveTimer); run.liveTimer = null; }
     if (run.xhr) try { run.xhr.abort(); } catch (_) { /* 이미 끝남 */ }
     if (run.ff) try { run.ff.terminate(); } catch (_) { /* 이미 끝남 */ }
     run.xhr = run.ff = null;
@@ -1047,6 +1049,24 @@
     if (!res.ok) throw Object.assign(new Error((body && body.message) || ""), { status: res.status, code: body && body.error, retry: body && body.retry_after });
     return body || {};
   }
+  // 잠깐의 끊김(와이파이, 서버 통로 다시 연결)은 조금씩 더 기다렸다가 다시 물어봄 — 약 1분 동안 5번까지.
+  // 문지기가 작업과 결과를 보관하므로, 끊겼다고 체험 횟수(공개)나 강의 수(초대)를 다시 쓰지 않아도 됩니다.
+  async function apiRetry(path, run, ok) {
+    const waits = CONFIG.api.retryMs;
+    for (let i = 0; ; i++) {
+      let err;
+      try {
+        const j = await api(path);
+        if (ok(j)) return j;
+        err = Object.assign(new Error(""), { code: "internal", transient: true }); // 200인데 본문이 비었거나 끊김
+      } catch (e) { err = e; }
+      const transient = err.transient || err.code === "network" || err.status === 502 || err.status === 503 || err.status === 504;
+      if (!transient || i >= waits.length || state.run !== run) throw err;
+      setText(el.progNow, "연결이 잠시 끊겨 다시 확인하고 있습니다… (" + (i + 1) + "/" + waits.length + ")");
+      await wait(waits[i]);
+      if (state.run !== run) throw Object.assign(new Error(""), { code: "aborted" });
+    }
+  }
   async function loadStatus() {
     if (!live()) return;
     try {
@@ -1139,11 +1159,15 @@
       a.src = u;
     });
   }
-  function upload(fd, onProgress, run) {
+  // 소리만 보내기(계약 v1.1 §A3): 본문 = 소리 파일 그대로, 설정은 주소 뒤(?mode=…), 사람 확인·초대 코드는 머리글.
+  // 문지기가 본문을 읽지 않고 서버로 흘려 보내므로 큰 파일(초대 40MB)도 됩니다. 올리기 진행률은 그대로 보입니다.
+  function upload(path, blob, headers, onProgress, run) {
     return new Promise((resolve, reject) => {
       const x = new XMLHttpRequest();
       run.xhr = x;
-      x.open("POST", CONFIG.apiBase + "/demo/jobs");
+      x.open("POST", CONFIG.apiBase + path);
+      x.setRequestHeader("Content-Type", blob.type || "audio/mp4");
+      Object.keys(headers).forEach((k) => x.setRequestHeader(k, headers[k]));
       x.upload.onprogress = (e) => { if (e.lengthComputable) onProgress(e.loaded / e.total); };
       x.onload = () => {
         run.xhr = null;
@@ -1154,7 +1178,7 @@
       };
       x.onerror = () => { run.xhr = null; reject(Object.assign(new Error(""), { code: "network" })); };
       x.onabort = () => reject(Object.assign(new Error(""), { code: "aborted" }));
-      x.send(fd);
+      x.send(blob);
     });
   }
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -1169,6 +1193,48 @@
     if (st && st.status === "queued") txt = "차례를 기다리고 있습니다" + (st.wait_sec ? "(약 " + Math.ceil(st.wait_sec) + "초)" : "") + ".";
     if (st && st.message) txt += " " + st.message;
     setText(el.progNow, txt);
+    if (st && (i === 2 || i === 3)) liveClock(run, st.status === "queued" ? "q" : i, st);
+    else if (run.liveTimer) { clearInterval(run.liveTimer); run.liveTimer = null; }
+  }
+  // 서버 단계 동안 1초마다 경과 시간·예상 시간을 보여 줌 (웹에서 대략 추산 — 서버가 세부 단계를 알려 주기 전까지의 임시 방법)
+  const LIVE_EST = {
+    q: { now: "차례를 기다리고 있습니다", base: 0, perSec: 0 },
+    2: { now: "받아쓰고 어절마다 시간을 맞추고 있습니다", base: 15, perSec: 0.06 },
+    3: { now: "Gemini로 표기를 다듬고 자막 줄을 나누고 있습니다", base: 20, perSec: 0.12 },
+  };
+  function fmtSec(sec) {
+    sec = Math.max(0, Math.round(sec));
+    return sec < 60 ? sec + "초" : Math.floor(sec / 60) + "분 " + (sec % 60) + "초";
+  }
+  function liveClock(run, key, st) {
+    const now = Date.now();
+    run.liveAt = run.liveAt || {};
+    if (!run.liveAt[key]) run.liveAt[key] = now;
+    if (!run.jobAt) run.jobAt = now;
+    run.liveKey = key; run.liveSt = st;
+    if (!run.liveTimer) run.liveTimer = setInterval(() => {
+      if (state.run !== run || run.step >= 4) { clearInterval(run.liveTimer); run.liveTimer = null; return; }
+      renderLive(run);
+    }, 1000);
+    renderLive(run);
+  }
+  function renderLive(run) {
+    const key = run.liveKey, st = run.liveSt || {}, info = LIVE_EST[key];
+    if (!info) return;
+    const now = Date.now(), el2 = (now - run.liveAt[key]) / 1000, total = (now - run.jobAt) / 1000;
+    const dur = run.audioDur || 0, est = info.base + dur * info.perSec;
+    let txt = info.now + " · " + fmtSec(el2) + " 지남";
+    if (key === "q" && st.wait_sec) txt += " (약 " + Math.ceil(st.wait_sec) + "초 남음)";
+    if (key !== "q" && est > 0) txt += el2 <= est * 1.5 ? " (예상 약 " + fmtSec(est) + ")" : " — 조금 더 걸리고 있습니다. 그대로 기다려 주세요.";
+    txt += " · 전체 " + fmtSec(total);
+    if (st.message) txt += " " + st.message;
+    setText(el.progNow, txt);
+    if (key !== "q" && est > 0) {
+      const lo = key === 2 ? 45 : 70, hi = key === 2 ? 70 : 100;
+      const pct = lo + (hi - lo) * Math.min(0.95, el2 / est);
+      el.progFill.style.width = pct.toFixed(1) + "%";
+      el.progBar.setAttribute("aria-valuenow", String(Math.round(pct)));
+    }
   }
   async function startLive(run) {
     const src = run.src;
@@ -1178,25 +1244,28 @@
       liveStep(run, 0, 0);
       const audio = await extractAudio(src.file, limit, (f) => liveStep(run, 0, f), run);
       if (state.run !== run) return;
+      run.audioDur = audio.dur;
       liveStep(run, 1, 0);
-      const fd = new FormData();
-      fd.append("audio", audio.blob, "audio.m4a");
-      fd.append("dur", audio.dur.toFixed(3));
-      fd.append("max_char", String(state.opts.maxChars));
-      fd.append("min_dur", String(state.opts.minDur));
-      fd.append("max_dur", String(state.opts.maxDur));
-      fd.append("mode", run.mode);
-      if (run.mode === "invite") fd.append("invite", state.code);
-      fd.append("turnstile", tsToken());
-      fd.append("name", String(src.name || "").slice(0, 120));
-      const job = await upload(fd, (f) => liveStep(run, 1, f), run);
+      const token = tsToken();
+      if (!token) throw Object.assign(new Error(""), { code: "turnstile" }); // 소리를 뽑는 사이 사람 확인이 풀림 — 보내지 않음
+      const q = new URLSearchParams({
+        mode: run.mode,
+        dur: audio.dur.toFixed(3),
+        max_char: String(state.opts.maxChars),
+        min_dur: String(state.opts.minDur),
+        max_dur: String(state.opts.maxDur),
+        name: String(src.name || "").slice(0, 120),
+      });
+      const headers = { "X-Turnstile": token };
+      if (run.mode === "invite") headers["X-Invite"] = state.code;
+      const job = await upload("/demo/jobs?" + q.toString(), audio.blob, headers, (f) => liveStep(run, 1, f), run);
       tsReset();
       if (job.public_left != null) state.publicLeft = job.public_left;
       if (job.lectures_left != null) state.inviteLeft = job.lectures_left;
       const t0 = Date.now(), path = "/demo/jobs/" + encodeURIComponent(job.ticket);
       for (;;) {
         if (state.run !== run) return;
-        const st = await api(path);
+        const st = await apiRetry(path, run, (j) => !!j && typeof j.status === "string");
         if (state.run !== run) return;
         if (st.status === "done") break;
         if (st.status === "failed") throw Object.assign(new Error(st.message || ""), { code: "failed" });
@@ -1204,7 +1273,7 @@
         if (Date.now() - t0 > CONFIG.api.giveUpMs) throw new Error("20분이 지나도 끝나지 않아 기다리기를 멈췄습니다. 잠시 뒤 다시 해 보세요.");
         await wait(CONFIG.api.pollMs);
       }
-      const result = await api(path + "/result");
+      const result = await apiRetry(path + "/result", run, (j) => !!j && Array.isArray(j.cues)); // 끊겨 비어 오면 다시
       if (state.run !== run) return;
       liveStep(run, 4, null);
       run.server = result;
