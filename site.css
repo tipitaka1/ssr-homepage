@@ -300,6 +300,13 @@ del.tok.err{text-decoration:line-through;text-decoration-color:#ff6b6b;text-deco
 .btn-green:hover{background:#3bd16f}
 .trial-mail{margin:14px 0 0;font-size:14px;color:#a9bfd6}
 .trial-mail b{color:#fff}
+.report-peek{display:flex;align-items:center;gap:16px;max-width:440px;margin:22px 0 0;padding:12px 18px 12px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;transition:background .2s,border-color .2s}
+.report-peek:hover,.report-peek:focus-visible{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.34)}
+.report-peek img{flex:none;width:64px;height:auto;border-radius:3px;background:#fff;box-shadow:0 10px 22px -10px rgba(0,0,0,.8)}
+.rp-txt{display:grid;gap:2px;min-width:0}
+.rp-txt b{font-size:16px;letter-spacing:-.01em}
+.rp-txt span{font-size:13.5px;line-height:1.5;color:#a9bfd6}
+.rp-txt .rp-go{margin-top:2px;color:#fff;font-weight:700}
 .checks{list-style:none;margin:0;padding:20px 24px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
 .checks li{position:relative;padding:11px 0 11px 40px;border-top:1px solid rgba(255,255,255,.1)}
 .checks li:first-child{border-top:0}

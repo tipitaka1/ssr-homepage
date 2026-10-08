@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.ss-r.co.kr/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.ss-r.co.kr/try.html</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.ss-r.co.kr/</loc><lastmod>2026-10-08</lastmod></url>
+  <url><loc>https://www.ss-r.co.kr/try.html</loc><lastmod>2026-10-08</lastmod></url>
+  <url><loc>https://www.ss-r.co.kr/report-sample.html</loc><lastmod>2026-10-08</lastmod></url>
   <url><loc>https://www.ss-r.co.kr/profile/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.ss-r.co.kr/guide/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.ss-r.co.kr/guide/auto-subtitles.html</loc><lastmod>2026-10-07</lastmod></url>
@@ -17,4 +18,5 @@
   <url><loc>https://www.ss-r.co.kr/guide/team.html</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.ss-r.co.kr/guide/track-record.html</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.ss-r.co.kr/files/sangsaeng-company-profile-2026.pdf</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.ss-r.co.kr/files/sangsaeng-error-report-sample.pdf</loc><lastmod>2026-10-08</lastmod></url>
 </urlset>

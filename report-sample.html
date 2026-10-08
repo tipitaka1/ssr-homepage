@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오류 분석 리포트 예시 | 상생기록법인</title>
+<meta name="description" content="무료 시험을 맡기시면 사람이 검수한 자막과 함께 드리는 A4 한 장짜리 오류 분석 리포트의 예시입니다. 실제 사이버대학교 강의 4편(기관·과목명 비공개)으로 자동 자막 오류율과 오류 형태를 정리했습니다.">
+<link rel="canonical" href="https://www.ss-r.co.kr/report-sample.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="상생기록법인">
+<meta property="og:title" content="오류 분석 리포트 예시 | 상생기록법인">
+<meta property="og:description" content="자동 자막과 사람이 검수한 자막을 한 글자씩 맞대어, 오류율과 오류 형태를 A4 한 장으로 정리합니다.">
+<meta property="og:url" content="https://www.ss-r.co.kr/report-sample.html">
+<meta property="og:image" content="https://www.ss-r.co.kr/og.png">
+<meta name="theme-color" content="#054c7e">
+<link rel="icon" href="/logo-mark.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<style>
+:root{--ink:#0d2440;--navy:#054c7e;--blue:#1d75b3;--red:#d33a3a;--green:#15803d;--muted:#566779;--line:#d9e1e8;--mist:#f2f6fa;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font);color:var(--ink);background:#e9eef3;line-height:1.4;word-break:keep-all;overflow-wrap:break-word;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:var(--blue)}
+
+/* 화면 위 안내 — 인쇄할 때는 숨김 */
+.intro{max-width:210mm;margin:0 auto;padding:24px 0 18px}
+.crumbs{margin:0 0 10px;font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.crumbs a{color:var(--muted);text-decoration:none;font-weight:600}
+.crumbs a:hover{color:var(--blue);text-decoration:underline}
+.intro-text{margin:0;font-size:16px;line-height:1.65;color:#33475c;max-width:46em}
+.intro-text b{color:var(--ink)}
+.intro-acts{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+.ib{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:9px;border:1px solid #b9c9d8;background:#fff;color:var(--ink);font:inherit;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap}
+.ib:hover{border-color:var(--navy)}
+.ib-main{background:var(--navy);border-color:var(--navy);color:#fff}
+.ib-main:hover{background:#0a5d98}
+.ib-green{background:#22c55e;border-color:#22c55e;color:#05301a}
+.ib-green:hover{background:#3bd16f}
+
+/* A4 한 장 — 여백 위 20mm · 좌우 20mm · 아래 17mm */
+.sheet{width:210mm;min-height:297mm;margin:0 auto 40px;background:#fff;padding:20mm 20mm 17mm;box-shadow:0 10px 40px -12px rgba(13,36,64,.28);display:flex;flex-direction:column}
+.head{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:2px solid var(--navy);padding-bottom:8px}
+.brand{margin:0;display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;color:var(--navy)}
+.brand img{width:21px;height:21px}
+.tag{font-size:11px;font-weight:800;color:#fff;background:var(--blue);border-radius:999px;padding:3px 10px;white-space:nowrap}
+h1{font-size:23px;letter-spacing:-.03em;margin:13px 0 3px;line-height:1.25}
+.lead{margin:0;color:var(--muted);font-size:12.5px;line-height:1.55}
+.meta{margin:5px 0 0;font-size:11.5px;color:var(--muted)}
+.meta b{color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:12px 0 0}
+.kpi{border:1px solid var(--line);border-radius:9px;padding:8px 10px 7px;min-width:0}
+.kpi.main{background:var(--mist);border-color:#c9d8e6}
+.kpi .lbl{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
+.kpi .num{font-size:22px;font-weight:900;letter-spacing:-.02em;line-height:1.25;color:var(--navy);font-variant-numeric:tabular-nums}
+.kpi .num small{font-size:12px;font-weight:800}
+.kpi .sub{font-size:10.5px;color:var(--muted);white-space:nowrap}
+.kpi.red .num{color:var(--red)}
+.kpi.green .num{color:var(--green)}
+h2{font-size:13.5px;margin:15px 0 6px;letter-spacing:-.01em;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+h2 span{font-size:11px;font-weight:600;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:11.5px;font-variant-numeric:tabular-nums}
+th,td{padding:4px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font-size:10.5px;color:var(--muted);font-weight:700;background:var(--mist);border-bottom:1px solid #c9d8e6}
+th:first-child,td:first-child,th:nth-child(3),td:nth-child(3){text-align:left}
+td:first-child{font-weight:700}
+td.er{font-weight:800;color:var(--red)}
+tr.sum td{border-top:1.5px solid var(--navy);border-bottom:none;font-weight:800;background:#fafcfe}
+.grid2{display:grid;grid-template-columns:.94fr 1.06fr;gap:18px}
+.bars{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.bars li{display:grid;grid-template-columns:108px 1fr 32px;align-items:center;gap:8px;font-size:11.5px}
+.bars .t{font-weight:700}
+.bars .track{height:10px;border-radius:5px;background:#edf2f7;overflow:hidden}
+.bars .fill{display:block;height:100%;border-radius:5px;background:var(--navy)}
+.bars .fill.soft{background:#9cc3e4}
+.bars .fill.mid{background:#4f93c9}
+.bars .p{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.legend{margin:8px 0 0;padding:0;list-style:none;font-size:10.5px;color:var(--muted);line-height:1.5;display:flex;flex-wrap:wrap;gap:2px 12px}
+.legend i{display:inline-block;width:10px;height:8px;border-radius:2px;margin-right:4px}
+.legend-note{margin:3px 0 0;font-size:10.5px;color:var(--muted);line-height:1.5}
+.ex{font-size:11.5px}
+.ex td{white-space:normal;text-align:left;vertical-align:top;padding:4px 5px}
+.ex td:first-child{width:76px;color:var(--muted);font-weight:700;white-space:nowrap}
+.ex .from{color:var(--red);text-decoration:line-through;text-decoration-thickness:1px}
+.ex .to{color:var(--green);font-weight:800}
+.ex .arr{color:var(--muted);padding:0 3px}
+.ex .sep{color:#aab6c2;padding:0 6px}
+.find{margin:0;padding:0;list-style:none;display:grid;gap:5px}
+.find li{position:relative;padding:6px 10px 6px 29px;border-radius:8px;background:var(--mist);font-size:11.8px;line-height:1.55}
+.find li b{color:var(--navy)}
+.find li::before{content:attr(data-n);position:absolute;left:9px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--navy);color:#fff;font-size:9.5px;font-weight:800;display:grid;place-items:center;line-height:1}
+.next{margin:9px 0 14px;padding:8px 12px;border-radius:9px;border:1px solid rgba(21,128,61,.4);background:#f1fbf4;font-size:11.8px;line-height:1.55}
+.next b{color:var(--green)}
+.foot{margin-top:auto;padding-top:8px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);line-height:1.55;display:flex;justify-content:space-between;gap:16px}
+.foot p{margin:0}
+.foot p:last-child{white-space:nowrap;text-align:right}
+
+@media (max-width:820px){
+  .intro{padding:16px 16px 14px}
+  .sheet{width:auto;min-height:0;margin:0 0 24px;padding:20px 16px;box-shadow:none}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpi .lbl,.kpi .sub{white-space:normal}
+  .grid2{grid-template-columns:1fr}
+  .tbl{overflow-x:auto}
+  .foot{flex-direction:column}
+  .foot p:last-child{text-align:left}
+}
+@media (max-width:480px){
+  .ib{flex:1 1 100%}
+}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .intro{display:none}
+  .sheet{margin:0;box-shadow:none;width:210mm;height:297mm;min-height:0;overflow:hidden}
+}
+</style>
+</head>
+<body>
+<div class="intro">
+  <p class="crumbs"><a href="/">상생기록법인</a><span aria-hidden="true">›</span><a href="/guide/free-trial.html">무료 시험</a><span aria-hidden="true">›</span><span>오류 분석 리포트 예시</span></p>
+  <p class="intro-text"><b>무료 시험을 맡기시면 사람이 검수한 자막과 함께, 강의별 오류 분석 리포트를 A4 한 장으로 드립니다.</b> 아래는 실제 사이버대학교 강의 4편(기관·과목명 비공개)으로 만든 예시입니다.</p>
+  <div class="intro-acts">
+    <a class="ib ib-main" href="/files/sangsaeng-error-report-sample.pdf" download="상생기록법인_오류분석리포트_예시.pdf">PDF 내려받기 (A4 한 장)</a>
+    <button class="ib" type="button" onclick="window.print()">바로 인쇄</button>
+    <a class="ib ib-green" href="mailto:ssmd@ss-r.co.kr?subject=%5B%EB%AC%B4%EB%A3%8C%20%EC%8B%9C%ED%97%98%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8">메일로 무료 시험 신청하기</a>
+  </div>
+</div>
+
+<main class="sheet" aria-labelledby="r-title">
+  <header class="head"><p class="brand"><img src="/logo-mark.svg" alt="" width="21" height="21">㈜상생기록법인</p><span class="tag">예시 · 무료 시험 오류 분석 리포트</span></header>
+
+  <h1 id="r-title">자동 자막 오류 분석 리포트</h1>
+  <p class="lead">같은 강의의 <b>자동 자막</b>과 <b>사람이 검수한 자막</b>을 한 글자씩 맞대어, 얼마나·어떻게 틀렸는지 정리했습니다.</p>
+  <p class="meta">대상 <b>강의 4편</b> (두 대학) · 합계 <b>114분 33초</b> · 자동 자막 <b>44,922자</b> · 측정 2026년 10월</p>
+
+  <section class="kpis" aria-label="한눈에 보기">
+    <div class="kpi main"><div class="lbl">자동 자막 오류율</div><div class="num">0.69<small>%</small></div><div class="sub">4편 합계 · 정확도 99.31%</div></div>
+    <div class="kpi red"><div class="lbl">사람이 고친 글자</div><div class="num">311<small>자</small></div><div class="sub">44,922자 가운데</div></div>
+    <div class="kpi"><div class="lbl">뜻에 영향을 주는 오류</div><div class="num">0.13<small>%</small></div><div class="sub">잘못 듣거나 빠진 말 60자</div></div>
+    <div class="kpi green"><div class="lbl">싱크(시간) 고친 곳</div><div class="num">1<small>곳</small></div><div class="sub">3,320곳 가운데</div></div>
+  </section>
+
+  <h2>강의별 결과 <span>오류율 = 사람이 고친 글자 수 ÷ 자동 자막 글자 수</span></h2>
+  <div class="tbl"><table>
+    <thead><tr><th scope="col">강의</th><th scope="col">길이</th><th scope="col">특징</th><th scope="col">자동 자막</th><th scope="col">고친 글자</th><th scope="col">오류율</th><th scope="col">다시 나눈 줄</th></tr></thead>
+    <tbody>
+      <tr><td>A대학 강의 1</td><td>82분 37초</td><td>영문 용어 많음</td><td>32,532자</td><td>134자</td><td class="er">0.41%</td><td>40%</td></tr>
+      <tr><td>A대학 강의 2</td><td>22분 40초</td><td>일반</td><td>8,796자</td><td>85자</td><td class="er">0.97%</td><td>35%</td></tr>
+      <tr><td>B대학 강의 1</td><td>5분 10초</td><td>말버릇 많음</td><td>1,910자</td><td>72자</td><td class="er">3.77%</td><td>2%</td></tr>
+      <tr><td>B대학 강의 2</td><td>4분 6초</td><td>수치·수식 포함</td><td>1,684자</td><td>20자</td><td class="er">1.19%</td><td>31%</td></tr>
+      <tr class="sum"><td>합계</td><td>114분 33초</td><td></td><td>44,922자</td><td>311자</td><td class="er">0.69%</td><td>37%</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid2">
+    <section>
+      <h2>오류 형태 <span>고친 글자 311자 기준</span></h2>
+      <ul class="bars">
+        <li><span class="t">문장부호</span><span class="track"><span class="fill soft" style="width:21.9%"></span></span><span class="p">22%</span></li>
+        <li><span class="t">말버릇 정리</span><span class="track"><span class="fill soft" style="width:20.6%"></span></span><span class="p">21%</span></li>
+        <li><span class="t">조사·어미</span><span class="track"><span class="fill soft" style="width:15.8%"></span></span><span class="p">16%</span></li>
+        <li><span class="t">숫자·영문·수식 표기</span><span class="track"><span class="fill mid" style="width:14.8%"></span></span><span class="p">15%</span></li>
+        <li><span class="t">빠지거나 덧붙은 말</span><span class="track"><span class="fill" style="width:13.8%"></span></span><span class="p">14%</span></li>
+        <li><span class="t">띄어쓰기</span><span class="track"><span class="fill soft" style="width:7.7%"></span></span><span class="p">8%</span></li>
+        <li><span class="t">잘못 들은 말</span><span class="track"><span class="fill" style="width:5.5%"></span></span><span class="p">5%</span></li>
+      </ul>
+      <ul class="legend">
+        <li><i style="background:#9cc3e4"></i>뜻이 그대로인 손질</li>
+        <li><i style="background:#4f93c9"></i>표기 손질</li>
+        <li><i style="background:#054c7e"></i>뜻에 영향을 주는 오류</li>
+      </ul>
+      <p class="legend-note">말버릇('이제', '뭐')은 기관 지침대로 정리했습니다.</p>
+    </section>
+    <section>
+      <h2>이렇게 고쳤습니다 <span>자동 → 사람</span></h2>
+      <table class="ex"><tbody>
+        <tr><td>잘못 들은 말</td><td><span class="from">출연을</span><span class="arr">→</span><span class="to">출현을</span><span class="sep">·</span><span class="from">벗긴</span><span class="arr">→</span><span class="to">베낀</span></td></tr>
+        <tr><td>조사·어미</td><td><span class="from">여러분들이</span><span class="arr">→</span><span class="to">여러분이</span></td></tr>
+        <tr><td>숫자·영문</td><td><span class="from">하이로글리픽스</span><span class="arr">→</span><span class="to">하이로글리픽스(Hieroglyphics)</span></td></tr>
+        <tr><td>문장부호</td><td><span class="from">많았거든요.</span><span class="arr">→</span><span class="to">많았거든요?</span></td></tr>
+        <tr><td>띄어쓰기</td><td><span class="from">얻는데</span><span class="arr">→</span><span class="to">얻는 데</span><span class="sep">·</span><span class="from">그 다음에</span><span class="arr">→</span><span class="to">그다음에</span></td></tr>
+        <tr><td>말버릇 정리</td><td><span class="from">이제 인지 과정</span><span class="arr">→</span><span class="to">인지 과정</span></td></tr>
+      </tbody></table>
+    </section>
+  </div>
+
+  <h2>이 강의들에서 보인 것</h2>
+  <ul class="find">
+    <li data-n="1"><b>뜻에 영향을 주는 오류는 적었습니다.</b> 고친 글자의 66%는 문장부호·말버릇·조사·띄어쓰기 손질이고, 잘못 듣거나 빠진 말은 전체 글자의 0.13%였습니다.</li>
+    <li data-n="2"><b>강의마다 차이가 큽니다.</b> 말버릇이 많은 B대학 강의 1은 고친 것의 83%가 말버릇 정리였고, 영문 용어가 많은 A대학 강의 1은 32%가 원어 병기·영문 표기였습니다.</li>
+    <li data-n="3"><b>줄나눔은 37%를 기관 규격에 맞춰 다시 나눴고, 시간(싱크)은 거의 그대로 썼습니다.</b> 자동 자막만 쓰셔도 한 줄 글자 수를 기관 규격에 맞추면 다시 나눌 줄이 크게 줄어듭니다.</li>
+  </ul>
+  <p class="next"><b>권장</b> — 말이 또렷한 일반 강의는 자동 자막만으로도 쓸 만한 수준입니다. 영문 용어·수식이 많거나 장애학생 지원·시험용으로 쓰시는 과목은 사람 검수를 권합니다.</p>
+
+  <footer class="foot">
+    <p>※ 오류율 = 사람이 고친 글자 수 ÷ 자동 자막 글자 수(띄어쓰기·문장부호 포함, 줄나눔·싱크 제외). 자체 측정이며 강의에 따라 다릅니다.<br>※ 예시 강의는 2025~2026년 사이버대학교 강의입니다. 기관명·과목명·검수자 이름은 싣지 않았습니다.</p>
+    <p>㈜상생기록법인 · 02-2694-6962<br>ssmd@ss-r.co.kr · www.ss-r.co.kr</p>
+  </footer>
+</main>
+</body>
+</html>
