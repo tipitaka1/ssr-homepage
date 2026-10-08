@@ -65,7 +65,7 @@
     probeTimeout: 10000,     // 영상 길이 읽기를 기다리는 시간(ms)
     exampleBase: "예시강의", // 예시 강의로 받을 때 파일 이름
     fileSuffix: "_자동자막", // <원본이름>_자동자막.<확장자>
-    mail: "ssceo@ss-r.co.kr",
+    mail: "ssmd@ss-r.co.kr",
   };
 
   /* ───────────── 예시 강의: 서버가 돌려줄 모양(문장 → 어절 {w, s, e}, 초) ───────────── */
@@ -434,6 +434,7 @@
     stN: $("st-n"), stLong: $("st-long"), stAvg: $("st-avg"), stRed: $("st-red"), stRedWrap: $("st-red-wrap"), resplitNote: $("t-resplit-note"),
     publicQuota: $("t-public-quota"), publicMax: $("t-public-max"), serverNote: $("t-server-note"), offline: $("t-offline"), example2: $("t-example2"),
     inviteMax: $("t-invite-max"), inviteExp: $("t-invite-exp"), inviteBtn: d.querySelector("#t-invite-form button[type=submit]"), human: $("t-human"),
+    reqForm: $("t-req-form"), reqName: $("t-req-name"), reqOrg: $("t-req-org"), reqEmail: $("t-req-email"), reqHuman: $("t-req-human"), reqBtn: $("t-req-btn"), reqMsg: $("t-req-msg"), reqDone: $("t-req-done"), reqCode: $("t-req-code"), reqMail: $("t-req-mail"),
     cues: $("t-cues"), cueCount: $("t-cue-count"), cueScroll: $("t-cue-scroll"), cueList: $("t-cue-list"),
     dlBtns: Array.from(d.querySelectorAll(".t-dl-btn[data-fmt]")), dlLocked: $("t-dl-locked"), dlOpen: $("t-dl-open"), dlMax: $("t-dl-max"), dlName: $("t-dl-name"), toInvite: $("t-to-invite"),
   };
@@ -457,6 +458,7 @@
     server: "unknown",      // 실제 연결: up | down
     runError: "",           // 실제 연결 오류 문구(다음 시작 전까지 보임)
     serverMsg: "", publicMax: 3, inviteMax: 0, inviteExp: "", tsToken: "", tsWidget: null,
+    reqToken: "", reqWidget: null, reqDone: "", reqOff: false, // 초대 코드 자동 발급 칸(문지기 /demo/invite/request)
   };
   // 시험용 고리: 내 컴퓨터(127.0.0.1·localhost)에서만 ?api=주소, ?ts=skip (실제 도메인에서는 무시)
   const LOCAL = /^(127\.0\.0\.1|localhost)$/.test(root.location.hostname);
@@ -800,6 +802,9 @@
     setText(el.inviteMax, String(state.inviteMax || Math.round(CONFIG.inviteSeconds / 60)));
     setText(el.inviteExp, state.inviteExp ? " · " + state.inviteExp + "까지" : "");
     el.inviteOk.hidden = !state.code;
+    el.reqForm.hidden = !on || !!state.code || !!state.reqDone || state.reqOff;
+    el.reqDone.hidden = !state.reqDone;
+    if (state.tab === "invite" && !el.reqForm.hidden) ensureReqTurnstile();
     renderSource();
     el.stepGo.classList.toggle("is-done", el.agree1.checked && el.agree2.checked);
     const b = blocker();
@@ -1035,6 +1040,7 @@
     limit_global: "오늘은 체험이 많아 더 받을 수 없습니다.", not_found: "작업을 찾을 수 없습니다.", expired: "결과를 보관하는 시간(24시간)이 지났습니다.",
     server_off: "자막 서버가 잠시 꺼져 있습니다.", server_busy: "자막 서버가 지금 바쁩니다.", failed: "자막을 만들지 못했습니다.", internal: "잠시 문제가 생겼습니다.",
     network: "서버에 연결하지 못했습니다. 인터넷 연결을 확인해 주세요.",
+    limit_request: "같은 이메일 또는 같은 네트워크로 30일 안에 이미 초대 코드를 받으셨습니다.", self_invite_off: "지금은 메일로 신청해 주세요.",
   };
   function errText(e) {
     let t = (e && e.message) || ERR[e && e.code] || (e && e.status ? ERR.internal : ERR.network);
@@ -1085,13 +1091,7 @@
     if (!live()) return;
     if (TS_SKIP) { setText(el.human, "사람 확인(시험 모드: 건너뜀)"); return; }
     if (!CONFIG.turnstileSiteKey || state.tsWidget != null) return;
-    if (!tsLoad) tsLoad = new Promise((res, rej) => {
-      const sc = d.createElement("script");
-      sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-      sc.async = true; sc.onload = res; sc.onerror = rej;
-      d.head.appendChild(sc);
-    });
-    tsLoad.then(() => {
+    loadTs().then(() => {
       if (state.tsWidget != null || !root.turnstile) return;
       el.human.textContent = "";
       state.tsWidget = root.turnstile.render(el.human, {
@@ -1106,6 +1106,81 @@
     state.tsToken = "";
     if (state.tsWidget != null && root.turnstile) try { root.turnstile.reset(state.tsWidget); } catch (_) { /* 무시 */ }
   }
+  function loadTs() {
+    if (!tsLoad) tsLoad = new Promise((res, rej) => {
+      const sc = d.createElement("script");
+      sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      sc.async = true; sc.onload = res; sc.onerror = rej;
+      d.head.appendChild(sc);
+    });
+    return tsLoad;
+  }
+  // 초대 코드 자동 발급 칸의 사람 확인(두 번째 위젯) — 초대 코드 탭이 보일 때만 그림
+  function ensureReqTurnstile() {
+    if (!live()) return;
+    if (TS_SKIP) { setText(el.reqHuman, "사람 확인(시험 모드: 건너뜀)"); return; }
+    if (!CONFIG.turnstileSiteKey || state.reqWidget != null) return;
+    loadTs().then(() => {
+      if (state.reqWidget != null || !root.turnstile) return;
+      el.reqHuman.textContent = "";
+      state.reqWidget = root.turnstile.render(el.reqHuman, {
+        sitekey: CONFIG.turnstileSiteKey, language: "ko",
+        callback: (tok) => { state.reqToken = tok; },
+        "expired-callback": () => { state.reqToken = ""; },
+        "error-callback": () => { state.reqToken = ""; },
+      });
+    }).catch(() => setText(el.reqHuman, "사람 확인을 불러오지 못했습니다. 새로 고침해 보세요."));
+  }
+  const reqToken = () => (TS_SKIP ? "test-skip" : state.reqToken);
+  function reqReset() {
+    state.reqToken = "";
+    if (state.reqWidget != null && root.turnstile) try { root.turnstile.reset(state.reqWidget); } catch (_) { /* 무시 */ }
+  }
+  // 초대 코드 자동 발급(계약 v1.2 §A7): 이름·기관·이메일 + 사람 확인 → 코드가 바로 나오고 위 칸에 넣어 확인까지 함
+  el.reqForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (state.reqBusy) return;
+    const name = el.reqName.value.trim(), org = el.reqOrg.value.trim(), email = el.reqEmail.value.trim();
+    const bad = [[el.reqName, !name || name.length > 40, "이름을 넣어 주세요(40자 이하)."], [el.reqOrg, !org || org.length > 80, "기관·회사 이름을 넣어 주세요(80자 이하)."],
+      [el.reqEmail, !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 120, "이메일 주소를 올바르게 넣어 주세요."]];
+    [el.reqName, el.reqOrg, el.reqEmail].forEach((i) => i.removeAttribute("aria-invalid"));
+    const first = bad.find((b) => b[1]);
+    if (first) { first[0].setAttribute("aria-invalid", "true"); say(el.reqMsg, "err", first[2]); first[0].focus(); return; }
+    const token = reqToken();
+    if (!token) { say(el.reqMsg, "err", "사람 확인을 먼저 해 주세요."); return; }
+    state.reqBusy = true; el.reqBtn.disabled = true;
+    say(el.reqMsg, "", "초대 코드를 만들고 있습니다…");
+    try {
+      const j = await api("/demo/invite/request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: name, org: org, email: email, turnstile: token }) });
+      const code = String(j.code || "").toUpperCase();
+      if (!/^[A-Z0-9][A-Z0-9-]{3,39}$/.test(code)) throw Object.assign(new Error(""), { code: "internal" });
+      state.reqDone = code;
+      setText(el.reqCode, code);
+      say(el.reqMsg, "", "");
+      el.inviteInput.value = code;
+      el.inviteInput.removeAttribute("aria-invalid");
+      refresh();
+      if (typeof el.inviteForm.requestSubmit === "function") el.inviteForm.requestSubmit(); else el.inviteForm.dispatchEvent(new Event("submit", { cancelable: true }));
+      el.reqDone.scrollIntoView({ block: "nearest", behavior: smooth() });
+    } catch (err) {
+      reqReset();
+      if (err && (err.status === 404 || err.code === "self_invite_off")) {
+        state.reqOff = true; // 문지기에 아직 자동 발급이 없거나 꺼 둠 → 메일 신청으로
+        say(el.reqMsg, "", "");
+        refresh();
+        const a = el.reqMail.querySelector("a");
+        if (a) a.href = mailto("[초대 코드 요청]", ["이름: " + name, "기관(회사)명: " + org, "이메일: " + email, "체험하려는 강의 수와 길이: "]);
+        say(el.inviteMsg, "err", "지금은 자동 발급이 닫혀 있습니다. 아래 메일로 요청해 주시면 코드를 보내 드립니다.");
+      } else if (err && err.code === "turnstile") {
+        say(el.reqMsg, "err", "사람 확인이 지났습니다. 다시 확인한 뒤 눌러 주세요.");
+      } else if (err && err.code === "limit_request") {
+        say(el.reqMsg, "err", (err.message || ERR.limit_request) + " 그 코드를 쓰시거나 아래 메일로 문의해 주세요.");
+      } else {
+        say(el.reqMsg, "err", errText(err));
+      }
+    }
+    state.reqBusy = false; el.reqBtn.disabled = false;
+  });
   // 브라우저에서 소리만 뽑기: ffmpeg.wasm(단일 스레드, /vendor/ffmpeg/), 파일은 WORKERFS로 붙여 통째로 복사하지 않음
   const loadScript = (src) => new Promise((res, rej) => { const sc = d.createElement("script"); sc.src = src; sc.onload = res; sc.onerror = () => rej(new Error("script")); d.head.appendChild(sc); });
   const absURL = (u) => new URL(u, root.location.href).href;
@@ -1519,6 +1594,7 @@
   fillConfigText();
   syncControls(null);
   applyCapScale();
-  setTab("public");
+  setTab(root.location.hash === "#invite" ? "invite" : "public");
+  root.addEventListener("hashchange", () => { if (root.location.hash === "#invite") { setTab("invite"); el.bench.scrollIntoView({ block: "start", behavior: smooth() }); } });
   if (live()) { loadStatus(); if (TS_SKIP) ensureTurnstile(); }
 })(typeof window !== "undefined" ? window : undefined);

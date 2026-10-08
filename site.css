@@ -436,6 +436,7 @@ del.tok.err{text-decoration:line-through;text-decoration-color:#ff6b6b;text-deco
 a.try-link{display:inline-flex;align-items:center;gap:.4em;font-size:15px;font-weight:800;color:var(--green);text-decoration:none}
 a.try-link::before{content:"";border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
 a.try-link:hover{text-decoration:underline;text-underline-offset:3px}
+.ladder-lead{margin:0 0 18px;color:#dbe8f6;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .ladder{list-style:none;margin:0 0 52px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:none}
 .ladder li{position:relative;display:flex;flex-direction:column;gap:8px;padding:18px 20px 16px 64px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
 .ladder li + li::before{content:"";position:absolute;left:-12px;top:50%;width:8px;height:8px;border-top:2px solid rgba(255,255,255,.45);border-right:2px solid rgba(255,255,255,.45);transform:translate(-50%,-50%) rotate(45deg)}

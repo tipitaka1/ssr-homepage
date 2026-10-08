@@ -31,9 +31,9 @@ from pathlib import Path
 from urllib.parse import quote
 
 BRAND = "상생기록법인"
-MAIL = "ssceo@ss-r.co.kr"
+MAIL = "ssmd@ss-r.co.kr"
 TEL = "02-2694-6962"
-TRIAL_MAILTO = ("mailto:ssceo@ss-r.co.kr?subject=%5B%EB%AC%B4%EB%A3%8C%20%EC%8B%9C%ED%97%98"
+TRIAL_MAILTO = ("mailto:ssmd@ss-r.co.kr?subject=%5B%EB%AC%B4%EB%A3%8C%20%EC%8B%9C%ED%97%98"
                 "%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8")  # [무료 시험 신청] 강의 3편
 HUB_TITLE = "자세히 알아보기"
 HUB_LEAD = "자막을 맡기기 전에 궁금하실 내용을 주제별로 자세히 적었습니다."
