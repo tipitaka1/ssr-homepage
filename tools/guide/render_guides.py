@@ -34,10 +34,10 @@ BRAND = "상생기록법인"
 MAIL = "ssmd@ss-r.co.kr"
 TEL = "02-2694-6962"
 TRIAL_MAILTO = ("mailto:ssmd@ss-r.co.kr?subject=%5B%EB%AC%B4%EB%A3%8C%20%EC%8B%9C%ED%97%98"
-                "%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8")  # [무료 시험 신청] 강의 3편
+                "%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8")  # [시범 제작 신청] 강의 3편
 HUB_TITLE = "자세히 알아보기"
 HUB_LEAD = "자막을 맡기기 전에 궁금하실 내용을 주제별로 자세히 적었습니다."
-HUB_DESC = "강의 자막을 맡기기 전에 궁금하실 내용, 두 가지 자막과 오류율, 단가와 무료 시험, 일하는 방식, 회사를 주제별로 자세히 안내합니다."
+HUB_DESC = "강의 자막을 맡기기 전에 궁금하실 내용, 두 가지 자막과 오류율, 단가와 무료 시범 제작, 일하는 방식, 회사를 주제별로 자세히 안내합니다."
 GROUPS = [
     ("자막", ["auto-subtitles", "reviewed-subtitles", "error-rate", "math-foreign"]),
     ("맡기기", ["price", "free-trial", "faq"]),
@@ -333,7 +333,7 @@ def header_html(c):
     <nav aria-label="주요 메뉴">
       <ul class="menu">
         <li><a href="{h}#service">두 가지 자막</a></li>
-        <li><a href="{h}#trial">무료 시험</a></li>
+        <li><a href="{h}#trial">무료 시범 제작</a></li>
         <li><a href="{h}#price">단가</a></li>
         <li><a href="{h}#process">일하는 방식</a></li>
         <li><a href="{h}#clients">거래처</a></li>
@@ -368,11 +368,11 @@ def crumb_html(c, current):
 
 def band_html(c, slug):
     if slug == "free-trial":
-        btn = f'<a class="btn btn-green" href="{TRIAL_MAILTO}">메일로 무료 시험 신청하기</a>'
+        btn = f'<a class="btn btn-green" href="{TRIAL_MAILTO}">메일로 시범 제작 신청하기</a>'
     elif "free-trial" in c.pages:
-        btn = f'<a class="btn btn-green more" href="{esc(c.page_href("free-trial"))}">무료 시험 알아보기</a>'
+        btn = f'<a class="btn btn-green more" href="{esc(c.page_href("free-trial"))}">무료 시범 제작 알아보기</a>'
     else:
-        btn = f'<a class="btn btn-green" href="{esc(c.home)}#trial">무료 시험 알아보기</a>'
+        btn = f'<a class="btn btn-green" href="{esc(c.home)}#trial">무료 시범 제작 알아보기</a>'
     return f"""<section class="g-band" aria-labelledby="g-band-title">
   <div class="wrap g-band-in">
     <div class="g-band-copy">

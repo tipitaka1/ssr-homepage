@@ -1020,7 +1020,7 @@
   function trialMail() {
     const s = (state.result && state.result.src) || state.source;
     const from = !s ? "예시 강의" : s.kind === "file" ? s.name : "예시 강의";
-    return mailto("[무료 시험 신청] 강의 3편", ["기관(회사)명: ", "담당자·연락처: ", "강의 3편(제목·길이): ", "자막 규격(한 줄 최대 글자 수 등): ", "",
+    return mailto("[시범 제작 신청] 강의 3편", ["기관(회사)명: ", "담당자·연락처: ", "강의 3편(제목·길이): ", "자막 규격(한 줄 최대 글자 수 등): ", "",
       "— 체험에서 넘어옴: " + from + ", 한 줄 최대 " + state.opts.maxChars + "자"]);
   }
   const inviteMail = () => mailto("[초대 코드 요청]", ["기관(회사)명: ", "담당자·연락처: ", "체험하려는 강의 수와 길이: "]);
