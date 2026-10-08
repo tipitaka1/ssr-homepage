@@ -434,7 +434,7 @@
     stN: $("st-n"), stLong: $("st-long"), stAvg: $("st-avg"), stRed: $("st-red"), stRedWrap: $("st-red-wrap"), resplitNote: $("t-resplit-note"),
     publicQuota: $("t-public-quota"), publicMax: $("t-public-max"), serverNote: $("t-server-note"), offline: $("t-offline"), example2: $("t-example2"),
     inviteMax: $("t-invite-max"), inviteExp: $("t-invite-exp"), inviteBtn: d.querySelector("#t-invite-form button[type=submit]"), human: $("t-human"),
-    reqForm: $("t-req-form"), reqName: $("t-req-name"), reqOrg: $("t-req-org"), reqEmail: $("t-req-email"), reqHuman: $("t-req-human"), reqBtn: $("t-req-btn"), reqMsg: $("t-req-msg"), reqDone: $("t-req-done"), reqCode: $("t-req-code"), reqMail: $("t-req-mail"),
+    reqForm: $("t-req-form"), reqConsent: $("t-req-consent"), reqName: $("t-req-name"), reqOrg: $("t-req-org"), reqEmail: $("t-req-email"), reqHuman: $("t-req-human"), reqBtn: $("t-req-btn"), reqMsg: $("t-req-msg"), reqDone: $("t-req-done"), reqCode: $("t-req-code"), reqMail: $("t-req-mail"),
     cues: $("t-cues"), cueCount: $("t-cue-count"), cueScroll: $("t-cue-scroll"), cueList: $("t-cue-list"),
     dlBtns: Array.from(d.querySelectorAll(".t-dl-btn[data-fmt]")), dlLocked: $("t-dl-locked"), dlOpen: $("t-dl-open"), dlMax: $("t-dl-max"), dlName: $("t-dl-name"), toInvite: $("t-to-invite"),
   };
@@ -1141,8 +1141,8 @@
     e.preventDefault();
     if (state.reqBusy) return;
     const name = el.reqName.value.trim(), org = el.reqOrg.value.trim(), email = el.reqEmail.value.trim();
-    const bad = [[el.reqName, !name || name.length > 40, "이름을 넣어 주세요(40자 이하)."], [el.reqOrg, !org || org.length > 80, "기관·회사 이름을 넣어 주세요(80자 이하)."],
-      [el.reqEmail, !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 120, "이메일 주소를 올바르게 넣어 주세요."]];
+    const bad = [[el.reqOrg, !org || org.length > 80, "기관·회사 이름을 넣어 주세요(80자 이하)."],
+      [el.reqEmail, !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 120, "이메일 주소를 올바르게 넣어 주세요."], [el.reqName, name.length > 40, "이름은 40자 이하로 넣어 주세요."]];
     [el.reqName, el.reqOrg, el.reqEmail].forEach((i) => i.removeAttribute("aria-invalid"));
     const first = bad.find((b) => b[1]);
     if (first) { first[0].setAttribute("aria-invalid", "true"); say(el.reqMsg, "err", first[2]); first[0].focus(); return; }
@@ -1151,7 +1151,7 @@
     state.reqBusy = true; el.reqBtn.disabled = true;
     say(el.reqMsg, "", "초대 코드를 만들고 있습니다…");
     try {
-      const j = await api("/demo/invite/request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: name, org: org, email: email, turnstile: token }) });
+      const j = await api("/demo/invite/request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: name, org: org, email: email, consent: !!el.reqConsent.checked, turnstile: token }) });
       const code = String(j.code || "").toUpperCase();
       if (!/^[A-Z0-9][A-Z0-9-]{3,39}$/.test(code)) throw Object.assign(new Error(""), { code: "internal" });
       state.reqDone = code;
@@ -1169,7 +1169,7 @@
         say(el.reqMsg, "", "");
         refresh();
         const a = el.reqMail.querySelector("a");
-        if (a) a.href = mailto("[초대 코드 요청]", ["이름: " + name, "기관(회사)명: " + org, "이메일: " + email, "체험하려는 강의 수와 길이: "]);
+        if (a) a.href = mailto("[초대 코드 요청]", ["기관(회사)명: " + org, "이메일: " + email, "이름(선택): " + name, "체험하려는 강의 수와 길이: "]);
         say(el.inviteMsg, "err", "지금은 자동 발급이 닫혀 있습니다. 아래 메일로 요청해 주시면 코드를 보내 드립니다.");
       } else if (err && err.code === "turnstile") {
         say(el.reqMsg, "err", "사람 확인이 지났습니다. 다시 확인한 뒤 눌러 주세요.");

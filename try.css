@@ -52,11 +52,15 @@
 .t-req{margin:18px 0 0;padding:16px 18px 14px;border:1px solid var(--line);border-radius:12px;background:#f7fafd}
 .t-req-title{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em}
 .t-req .t-sub{margin-top:4px}
-.t-req-grid{display:grid;grid-template-columns:1fr 1.3fr 1.4fr;gap:10px;margin:12px 0 0}
+.t-req-grid{display:grid;grid-template-columns:1.3fr 1.4fr 1fr;gap:10px;margin:12px 0 0}
 .t-req-grid label{display:block;font-size:13.5px;font-weight:700;color:var(--muted)}
 .t-req-grid label span{display:block;margin:0 0 4px}
 .t-req-grid input{width:100%;padding:9px 12px;border:1px solid #bccbda;border-radius:8px;background:#fff;color:var(--ink);font:inherit;font-size:15px}
 .t-req-grid input[aria-invalid="true"]{border-color:var(--red);background:#fff7f7}
+.t-req-grid label em{font-style:normal;font-weight:700;font-size:12px;color:var(--blue);margin-left:4px}
+.t-req-grid label em.opt{color:#8a99a8}
+.t-req-consent{margin:12px 0 0}
+.t-req-privacy{margin:6px 0 0;font-size:13px}
 .t-req-human{margin:12px 0 0}
 .t-req-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 0 0}
 .t-req-act .t-fine{margin:0}
