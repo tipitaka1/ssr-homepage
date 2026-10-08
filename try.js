@@ -43,7 +43,7 @@
     maxCps: 30,              // 자막 목록 CPS 칸 빨강 기준(SS_SubEditor 기본값)
     // 실제 연결(문지기 API, demo_api_contract.md §A). 비어 있으면 예시 강의만 되는 모드
     apiBase: "https://try-api.ss-r.co.kr",
-    turnstileSiteKey: "0x4AAAAAAAFQemKuPxfd5AkHV", // Turnstile 위젯 ssr-try 의 사이트 키(공개용)
+    turnstileSiteKey: "0x4AAAAAAFQemKuPxfd5AkHV", // Turnstile 위젯 ssr-try 의 사이트 키(공개용)
     api: { pollMs: 3000, giveUpMs: 20 * 60 * 1000, ffmpegBase: "/vendor/ffmpeg/",
       retryMs: [3000, 7000, 15000, 30000] }, // 잠깐 끊길 때 다시 묻기 전 기다리는 시간(5번, 약 1분)
     bridgeGap: 0.3,          // 화면 미리보기만: 자막 사이 틈이 이보다 짧으면 이어 보여 깜빡이지 않게 (파일·목록 시각은 그대로)
