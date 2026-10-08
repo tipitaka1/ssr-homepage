@@ -72,6 +72,7 @@
 .t-msg:empty{display:none}
 .t-msg.is-err{color:var(--red)}
 .t-msg.is-ok{color:var(--green)}
+.t-msg.is-info{color:#8a5300;background:#fff6e6;border:1px solid #f1d29b;border-radius:8px;padding:8px 12px}
 
 /* 단계 */
 .t-step{padding:24px 0;border-bottom:1px solid var(--line)}

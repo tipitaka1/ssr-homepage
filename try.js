@@ -457,7 +457,7 @@
     result: null,           // {src, mode, end, sentences, cues, title, base, useVideo, live, serverCues, serverSettings}
     server: "unknown",      // 실제 연결: up | down
     runError: "",           // 실제 연결 오류 문구(다음 시작 전까지 보임)
-    serverMsg: "", publicMax: 3, inviteMax: 0, inviteExp: "", tsToken: "", tsWidget: null,
+    serverMsg: "", notice: "", closed: false, publicMax: 3, inviteMax: 0, inviteExp: "", tsToken: "", tsWidget: null,
     reqToken: "", reqWidget: null, reqDone: "", reqOff: false, // 초대 코드 자동 발급 칸(문지기 /demo/invite/request)
   };
   // 시험용 고리: 내 컴퓨터(127.0.0.1·localhost)에서만 ?api=주소, ?ts=skip (실제 도메인에서는 무시)
@@ -794,8 +794,11 @@
     el.inviteInput.disabled = !on;
     if (el.inviteBtn) el.inviteBtn.disabled = !on;
     el.publicQuota.hidden = !on || state.server !== "up";
-    el.serverNote.hidden = !(on && state.server === "down");
-    setText(el.serverNote, state.server === "down" ? (state.serverMsg || "지금은 자막 서버에 연결할 수 없습니다.") + " 예시 강의는 바로 보실 수 있습니다." : "");
+    const info = on && state.server === "up" && !!state.notice; // 열려 있을 때의 점검 안내 한 줄
+    el.serverNote.hidden = !(on && (state.server === "down" || info));
+    el.serverNote.classList.toggle("is-err", state.server === "down");
+    el.serverNote.classList.toggle("is-info", info);
+    setText(el.serverNote, state.server === "down" ? (state.serverMsg || "지금은 자막 서버에 연결할 수 없습니다.") + " 예시 강의는 바로 보실 수 있습니다." : info ? "안내: " + state.notice : "");
     setText(el.publicLeft, String(state.publicLeft));
     setText(el.publicMax, String(state.publicMax));
     setText(el.inviteLeft, String(state.inviteLeft));
@@ -1077,8 +1080,12 @@
     if (!live()) return;
     try {
       const j = await api("/demo/status");
-      state.server = j.server === "down" ? "down" : "up";
-      state.serverMsg = j.server === "down" ? "지금은 자막 서버가 쉬고 있습니다." : "";
+      // 관리자 화면에서 체험을 닫았거나(open:false) 점검 안내(notice)를 넣었을 때
+      state.closed = j.open === false;
+      state.notice = typeof j.notice === "string" ? j.notice.trim().slice(0, 200) : "";
+      state.server = j.server === "down" || state.closed ? "down" : "up";
+      state.serverMsg = state.closed ? (state.notice || "지금은 자동 자막 체험을 잠시 쉬고 있습니다. 곧 다시 열겠습니다.")
+        : j.server === "down" ? "지금은 자막 서버가 쉬고 있습니다." : "";
       if (j.public_left != null) state.publicLeft = j.public_left;
       if (j.public_max != null) state.publicMax = j.public_max;
     } catch (e) { state.server = "down"; state.serverMsg = errText(e); }
