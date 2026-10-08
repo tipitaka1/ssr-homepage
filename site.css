@@ -265,6 +265,7 @@ del.tok.err{text-decoration:line-through;text-decoration-color:#ff6b6b;text-deco
 .stats-note{margin:12px 0 0;font-size:13px;color:var(--muted)}
 .stats b{font-size:clamp(30px,3.2vw,40px);font-weight:800;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1.1}
 .stats li > span{font-weight:800;color:var(--blue);margin-left:2px;font-size:18px}
+.stats .approx{font-style:normal;font-weight:800;color:var(--blue);font-size:18px;margin-right:3px;vertical-align:6px}
 .stats small{display:block;margin-top:6px;font-size:14px;color:var(--muted);line-height:1.5}
 .stats li.g b,.stats li.g > span{color:var(--green)}
 

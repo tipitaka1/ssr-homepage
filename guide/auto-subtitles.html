@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>강의 자동 자막 — 받아쓰기·싱크·줄나눔, 하루 최대 1,000시간 | 상생기록법인</title>
-<meta name="description" content="강의 음성을 받아쓰고 단어마다 싱크를 맞춘 뒤, 강의 전체 맥락에 맞게 다듬어 줄을 나누는 자동 자막입니다. 오류율 약 5%(자체 측정), 하루 최대 1,000시간 분량을 처리합니다.">
+<title>강의 자동 자막 — 음성 인식(STT)·싱크·줄나눔, 하루 최대 1,000시간 | 상생기록법인</title>
+<meta name="description" content="음성 인식(STT)·단어 단위 싱크·문맥 교정·줄나눔을 자동 처리하는 강의 자동 자막. 오류율 약 5%(자체 측정), 하루 최대 1,000시간 처리.">
 <link rel="canonical" href="https://www.ss-r.co.kr/guide/auto-subtitles.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.ss-r.co.kr/guide/auto-subtitles.html">
 <meta property="og:site_name" content="상생기록법인">
-<meta property="og:title" content="강의 자동 자막 — 받아쓰기·싱크·줄나눔, 하루 최대 1,000시간 | 상생기록법인">
-<meta property="og:description" content="강의 음성을 받아쓰고 단어마다 싱크를 맞춘 뒤, 강의 전체 맥락에 맞게 다듬어 줄을 나누는 자동 자막입니다. 오류율 약 5%(자체 측정), 하루 최대 1,000시간 분량을 처리합니다.">
+<meta property="og:title" content="강의 자동 자막 — 음성 인식(STT)·싱크·줄나눔, 하루 최대 1,000시간 | 상생기록법인">
+<meta property="og:description" content="음성 인식(STT)·단어 단위 싱크·문맥 교정·줄나눔을 자동 처리하는 강의 자동 자막. 오류율 약 5%(자체 측정), 하루 최대 1,000시간 처리.">
 <meta property="og:image" content="https://www.ss-r.co.kr/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,8 +24,8 @@
 <link rel="stylesheet" href="/guide.css">
 <script defer src="/guide-drawer.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://www.ss-r.co.kr/"},{"@type":"ListItem","position":2,"name":"자세히 알아보기","item":"https://www.ss-r.co.kr/guide/"},{"@type":"ListItem","position":3,"name":"자동 자막","item":"https://www.ss-r.co.kr/guide/auto-subtitles.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"자동 자막은 많은 강의에 빠르게 자막을 달 때 맞습니다","description":"강의 음성을 받아쓰고 단어마다 싱크를 맞춘 뒤, 강의 전체 맥락에 맞게 다듬어 줄을 나누는 자동 자막입니다. 오류율 약 5%(자체 측정), 하루 최대 1,000시간 분량을 처리합니다.","url":"https://www.ss-r.co.kr/guide/auto-subtitles.html","inLanguage":"ko-KR","isPartOf":{"@id":"https://www.ss-r.co.kr/#website"},"publisher":{"@id":"https://www.ss-r.co.kr/#org"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"자동 자막만 따로 맡길 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 많은 강의를 한 번에 맡기실 때 단가를 협의해 정합니다."}},{"@type":"Question","name":"우리 강의에 자동 자막이 얼마나 맞는지 미리 볼 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"강의 3편 무료 시험을 신청하시면 사람이 검수한 자막과 함께 같은 강의의 자동 자막과 오류 분석 리포트를 드립니다. 오류 분석 리포트에서 강의별 오류율을 보실 수 있습니다."}},{"@type":"Question","name":"어떤 파일로 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"SMI, SRT, VTT, HWP 등 기관 규격에 맞춰 드립니다. 한 줄 글자 수와 인코딩도 맞춥니다."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"자동 자막은 많은 강의에 빠르게 자막을 달 때 맞습니다","description":"음성 인식(STT)·단어 단위 싱크·문맥 교정·줄나눔을 자동 처리하는 강의 자동 자막. 오류율 약 5%(자체 측정), 하루 최대 1,000시간 처리.","url":"https://www.ss-r.co.kr/guide/auto-subtitles.html","inLanguage":"ko-KR","isPartOf":{"@id":"https://www.ss-r.co.kr/#website"},"publisher":{"@id":"https://www.ss-r.co.kr/#org"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"자동 자막만 따로 맡길 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 단가는 물량에 따라 협의합니다."}},{"@type":"Question","name":"우리 강의의 자동 자막 품질을 미리 볼 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"강의 3편 무료 시범 제작에서 같은 강의의 자동 자막과 강의별 오류율(오류 분석 리포트)을 함께 드립니다."}},{"@type":"Question","name":"어떤 파일로 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"SMI·SRT·VTT·HWP 등 기관 규격(한 줄 글자 수·인코딩 포함)에 맞춰 납품합니다."}}]}</script>
 </head>
 <body class="g-page">
 <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -39,7 +39,7 @@
     <nav aria-label="주요 메뉴">
       <ul class="menu">
         <li><a href="/#service">두 가지 자막</a></li>
-        <li><a href="/#trial">무료 시험</a></li>
+        <li><a href="/#trial">무료 시범 제작</a></li>
         <li><a href="/#price">단가</a></li>
         <li><a href="/#process">일하는 방식</a></li>
         <li><a href="/#clients">거래처</a></li>
@@ -55,41 +55,41 @@
 <nav class="g-crumb" aria-label="현재 위치"><ol><li><a href="/">홈</a></li><li><a href="/guide/index.html">자세히 알아보기</a></li><li aria-current="page">자동 자막</li></ol></nav>
 <article class="guide" data-slug="auto-subtitles" aria-labelledby="g-title-auto-subtitles">
 <h1 id="g-title-auto-subtitles">자동 자막은 많은 강의에 빠르게 자막을 달 때 맞습니다</h1>
-<p class="g-lead">음성을 받아쓰고, 단어마다 시간을 맞추고, 강의 전체 맥락에 맞게 다듬어 줄을 나눕니다. 이 모든 과정을 직접 만든 프로그램이 자동으로 합니다.</p>
+<p class="g-lead">음성 인식(STT) → 단어 단위 싱크 → 문맥 교정·줄나눔을 자체 개발 프로그램이 자동으로 처리합니다.</p>
 <ul class="g-kpis">
   <li class="blue"><b>약 5%</b><span>오류율</span><small>정확도 약 95%</small></li>
   <li class="blue"><b>1,000시간</b><span>하루 최대 처리 분량</span><small>자동 자막 서버</small></li>
-  <li class="blue"><b>협의</b><span>기준 단가</span><small>많은 강의를 한 번에 맡기실 때</small></li>
+  <li class="blue"><b>협의</b><span>기준 단가</span><small>많은 강의 일괄 의뢰 시</small></li>
 </ul>
-<p><strong>1,000글자 중 약 50글자 수정이 필요합니다.</strong> 띄어쓰기와 문장부호도 한 글자로 셉니다.</p>
-<p class="g-note">※ 오류율 = 사람이 고친 글자 수 ÷ 자동 자막 글자 수 (띄어쓰기·문장부호 포함, 줄나눔·싱크 제외). 자체 측정값입니다. 강의 주제와 발음, 음질에 따라 달라집니다.</p>
-<h2>하는 일</h2>
+<p><strong>1,000글자 중 약 50글자 수정이 필요합니다.</strong></p>
+<p class="g-note">※ 오류율 = 사람이 고친 글자 수 ÷ 자동 자막 글자 수(띄어쓰기·문장부호 포함, 줄나눔·싱크 제외). 자체 측정값이며 강의 주제·발음·음질에 따라 달라집니다.</p>
+<h2>처리 공정</h2>
 <ol class="g-steps">
-  <li><span class="g-step-no">1</span><h3>받아쓰기와 싱크</h3><p>음성을 글자로 옮기고, 단어마다 시간을 맞춥니다.</p><span class="g-tag">SS SubExtractor</span></li>
-  <li><span class="g-step-no">2</span><h3>다듬기와 줄나눔</h3><p>강의 전체 맥락을 보고 표기를 고르고, 읽기 좋은 길이로 줄을 나눕니다.</p><span class="g-tag">SS SubExtractor</span></li>
-  <li><span class="g-step-no">3</span><h3>규격 맞춤과 납품</h3><p>기관마다 다른 한 줄 글자 수, 표시 시간, 파일 형식에 맞춰 내보내고 형식 오류를 검사합니다.</p><span class="g-tag">SS Subtitle Converter</span></li>
+  <li><span class="g-step-no">1</span><h3>음성 인식과 싱크</h3><p>음성을 텍스트로 바꾸고 단어 단위로 싱크를 맞춥니다.</p><span class="g-tag">SS SubExtractor</span></li>
+  <li><span class="g-step-no">2</span><h3>문맥 교정과 줄나눔</h3><p>강의 전체 문맥으로 표기를 교정하고 읽기 좋게 줄을 나눕니다.</p><span class="g-tag">SS SubExtractor</span></li>
+  <li><span class="g-step-no">3</span><h3>기관 규격 적용과 납품</h3><p>한 줄 글자 수·표시 시간·파일 형식을 기관 규격에 맞춰 내보내고 포맷 검사를 거칩니다.</p><span class="g-tag">SS Subtitle Converter</span></li>
 </ol>
-<p>자동 자막은 사람 검수 단계를 거치지 않습니다. 여기에 검수자가 영상을 끝까지 보며 고치는 단계를 더하면 ‘사람이 검수한 자막’이 됩니다. 접속 계정을 주시면 기관 영상 시스템에서 새 영상을 자동으로 받아 오는 방식도 운영합니다.</p>
+<p>사람 검수는 거치지 않습니다. 검수 단계를 더하면 ‘사람이 검수한 자막’입니다. 기관 영상 시스템 계정을 주시면 새 영상을 자동 수집합니다.</p>
 <h2>이럴 때 맞습니다</h2>
 <ul class="g-list">
   <li>많은 강의에 빠르게 자막을 달아야 할 때</li>
-  <li>말이 또렷한 한국어 강의</li>
+  <li>발음이 또렷한 한국어 강의</li>
 </ul>
-<p>자동 자막에서 수정이 가장 많이 필요한 곳이 수식과 외국어입니다. 이런 강의는 <strong>사람이 검수한 자막</strong>을 권합니다. 장애학생이 듣는 과목과 시험·평가에 쓰는 강의에도 사람이 검수한 자막이 맞습니다.</p>
+<p>자동 자막에서 수정이 가장 많이 필요한 곳이 수식과 외국어입니다. 이런 강의와 장애학생 지원 과목, 시험·평가용 강의에는 <strong>사람이 검수한 자막</strong>을 권합니다.</p>
 <h2>기준 단가</h2>
-<p>자동 자막은 많은 강의를 한 번에 맡기실 때 단가를 협의합니다. 실제 단가는 전체 물량과 계약 기간을 먼저 보고, 납기와 품질 요구를 더해 정합니다.</p>
+<p>많은 강의를 한 번에 맡기실 때 협의합니다. 전체 물량·계약 기간·납기·품질 요구로 정합니다.</p>
 <section class="g-faq" aria-labelledby="g-faq-auto-subtitles">
 <h2 id="g-faq-auto-subtitles">자주 묻는 질문</h2>
-<details open><summary>자동 자막만 따로 맡길 수 있나요?</summary><p>네. 많은 강의를 한 번에 맡기실 때 단가를 협의해 정합니다.</p></details>
-<details><summary>우리 강의에 자동 자막이 얼마나 맞는지 미리 볼 수 있나요?</summary><p>강의 3편 무료 시험을 신청하시면 사람이 검수한 자막과 함께 같은 강의의 자동 자막과 오류 분석 리포트를 드립니다. 오류 분석 리포트에서 강의별 오류율을 보실 수 있습니다.</p></details>
-<details><summary>어떤 파일로 받을 수 있나요?</summary><p>SMI, SRT, VTT, HWP 등 기관 규격에 맞춰 드립니다. 한 줄 글자 수와 인코딩도 맞춥니다.</p></details>
+<details open><summary>자동 자막만 따로 맡길 수 있나요?</summary><p>네. 단가는 물량에 따라 협의합니다.</p></details>
+<details><summary>우리 강의의 자동 자막 품질을 미리 볼 수 있나요?</summary><p>강의 3편 무료 시범 제작에서 같은 강의의 자동 자막과 강의별 오류율(오류 분석 리포트)을 함께 드립니다.</p></details>
+<details><summary>어떤 파일로 받을 수 있나요?</summary><p>SMI·SRT·VTT·HWP 등 기관 규격(한 줄 글자 수·인코딩 포함)에 맞춰 납품합니다.</p></details>
 </section>
 <nav class="g-related" aria-labelledby="g-rel-auto-subtitles">
 <h2 id="g-rel-auto-subtitles">함께 보면 좋은 내용</h2>
 <ul>
   <li><a class="more" href="/guide/reviewed-subtitles.html">사람이 검수한 자막</a></li>
-  <li><a class="more" href="/guide/error-rate.html">오류율 셈법</a></li>
-  <li><a class="more" href="/guide/free-trial.html">무료 시험</a></li>
+  <li><a class="more" href="/guide/error-rate.html">오류율 측정 기준</a></li>
+  <li><a class="more" href="/guide/free-trial.html">무료 시범 제작</a></li>
   <li><a class="more" href="/guide/price.html">단가와 견적</a></li>
 </ul>
 </nav>
@@ -103,7 +103,7 @@
       <h2 id="g-band-title">강의 3편, 무료로 먼저 맡겨 보세요</h2>
     </div>
     <div class="g-band-act">
-      <a class="btn btn-green more" href="/guide/free-trial.html">무료 시험 알아보기</a>
+      <a class="btn btn-green more" href="/guide/free-trial.html">무료 시범 제작 알아보기</a>
       <p class="g-band-contact">메일 <a href="mailto:ssmd@ss-r.co.kr?subject=%5B%EB%AC%B4%EB%A3%8C%20%EC%8B%9C%ED%97%98%20%EC%8B%A0%EC%B2%AD%5D%20%EA%B0%95%EC%9D%98%203%ED%8E%B8">ssmd@ss-r.co.kr</a><span aria-hidden="true"> · </span>전화 <a href="tel:02-2694-6962">02-2694-6962</a></p>
     </div>
   </div>
