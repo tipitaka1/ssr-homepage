@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """홈페이지 「품질」 메뉴(/quality/) — 오류율 측정 기준 + 두 가지 자막의 오류율 + 100개 언어 자동 자막 등급표 + 품질을 지키는 방법.
-등급표 재료는 같은 폴더의 lang_grades.json(언어 코드·이름·등급·오류율 — 서브웍스 엔진 01~04 가운데 그 언어에 가장 좋은 값, 엔진 이름은 넣지 않음 · 11/5 14:3x 안평식 「서브웍스 실제 엔진 값」). 서브웍스 현관 /api/lang_grades 의 sw(83개 언어) + 6220b 의 10/29 값(17개 언어)에서 뽑아 넣는다.
+등급표 재료는 같은 폴더의 lang_grades.json(언어 코드·이름·등급·글자 오류율 — 서브웍스 엔진 01~05 가운데 그 언어에 가장 좋은 값, 엔진 이름은 넣지 않음).
+11/5 16:12 안평식 「제안한 수치 등급으로」(4판): 기준 = 정확도(100 − 글자 오류율) A ≥96% · B ≥92% · C ≥85% · F — 오류율 4·8·15% · 엔진 01~05(05 복스트럴 넣음 · 제미나이 뺌).
+83개 언어 = 6317·6319 벤치(FLEURS dev, 7대 언어 3분×5편 · 76개 언어 2분×3편) cer, 17개 언어 = 6220b 의 10/29 60초 시료 — 서브웍스 등급표(_언어등급_6330.json)와 같은 재료.
 글을 고칠 때는 이 파일을 고치고 저장소 루트에서 `python3 tools/quality/render_quality.py`. 머리·바닥은 자세히 페이지와 같은 꼴. 2026-11-05 1판(안평식 12:50 ④ 「품질」 메뉴)."""
 import html
 import json
@@ -12,15 +14,24 @@ SITE = "https://www.ss-r.co.kr"
 BRAND = "상생기록법인"
 URL = SITE + "/quality/"
 TITLE = "품질"
-DESC = "자막 오류율 측정 기준, 자동 자막 오류율 약 3%(2026-2학기 실제 강의 3,330편 실측)·사람이 검수한 자막 약 0.3%, 100개 언어 자동 자막 등급표(언어별 측정 오류율, A·B·C·F)와 품질을 지키는 방법."
+DESC = "자막 오류율 측정 기준, 자동 자막 오류율 약 3%(2026-2학기 실제 강의 3,330편 실측)·사람이 검수한 자막 약 0.3%, 100개 언어 자동 자막 등급표(언어별 측정 정확도, A·B·C·F)와 품질을 지키는 방법."
 MAJOR = {"ko": "기준 단가 안내 언어", "en": "기준 단가 안내 언어", "zh": "기준 단가 안내 언어", "ja": "기준 단가 안내 언어"}
 MAJOR_ORDER = ["ko", "en", "zh", "ja"]
-GRADES = [
-    ("A", "측정 오류율 5% 이하", "자동 자막을 바로 초안으로 쓸 수 있는 수준입니다. 사람이 검수하면 납품 품질이 됩니다."),
-    ("B", "5% 초과 ~ 10%", "자동 자막을 초안으로 쓸 수 있지만 검수에 시간이 더 듭니다."),
-    ("C", "10% 초과 ~ 20%", "자동 자막만으로는 어렵습니다. 사람 검수·받아쓰기를 전제로 협의합니다."),
-    ("F", "20% 초과", "자동 자막을 드리지 않습니다. 사람 받아쓰기로 협의합니다."),
+GRADES = [   # 4판(11/5 16:12): 정확도 기준 — (등급, 정확도 구간, 오류율 구간, 뜻)
+    ("A", "정확도 96% 이상", "글자 오류율 4% 이하", "한국어 자동 자막과 같은 수준입니다. 자동 자막을 바로 초안으로 쓰고, 사람이 검수하면 납품 품질이 됩니다."),
+    ("B", "정확도 92~96%", "글자 오류율 4% 초과 ~ 8%", "자동 자막을 초안으로 쓸 수 있지만 검수에 시간이 더 듭니다."),
+    ("C", "정확도 85~92%", "글자 오류율 8% 초과 ~ 15%", "자동 자막만으로는 어렵습니다. 사람 검수·받아쓰기를 전제로 협의합니다."),
+    ("F", "정확도 85% 미만", "글자 오류율 15% 초과", "자동 자막을 드리지 않습니다. 사람 받아쓰기로 협의합니다."),
 ]
+
+
+def acc_text(er):
+    """글자 오류율 → 칩에 쓰는 정확도 글(소수 1자리). 오류율 0.1% 미만은 「99.9% 넘음」(100% 로 보이지 않게)."""
+    if er is None:
+        return ""
+    if er < 0.001:
+        return "99.9% 넘음"
+    return f"{max(0.0, 1 - er) * 100:.1f}%"
 
 
 def esc(s):
@@ -47,7 +58,7 @@ HEAD = """<!doctype html>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css?v=20261105b">
-<link rel="stylesheet" href="/guide.css?v=20261105d">
+<link rel="stylesheet" href="/guide.css?v=20261105e">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"홈","item":"{site}/"}},{{"@type":"ListItem","position":2,"name":"{title}","item":"{url}"}}]}}</script>
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebPage","name":"{title} — 오류율 측정 기준과 100개 언어 등급표","url":"{url}","description":"{desc}","inLanguage":"ko","isPartOf":{{"@type":"WebSite","name":"{brand}","url":"{site}/"}}}}</script>
 </head>
@@ -117,18 +128,19 @@ def grade_table(data):
     rows = data["rows"]
     cnt = data["count"]
     out = ['<div class="q-legend">']
-    for g, band, meaning in GRADES:
-        out.append(f'<div class="q-leg"><span class="q-grade q-{g}">{g}</span><div><b>{esc(band)}</b><p>{esc(meaning)}</p></div></div>')
+    for g, band, erb, meaning in GRADES:
+        out.append(f'<div class="q-leg"><span class="q-grade q-{g}">{g}</span><div><b>{esc(band)}</b> <small class="q-erb">{esc(erb)}</small><p>{esc(meaning)}</p></div></div>')
     out.append("</div>")
-    for g, band, _ in GRADES:
+    for g, band, _erb, _ in GRADES:
         langs = [r for r in rows if r["grade"] == g]
         chips = []
         for r in sorted(langs, key=lambda r: (MAJOR_ORDER.index(r["code"]) if r["code"] in MAJOR_ORDER else 9, r["name"])):   # 한국어·영어·중국어·일본어 먼저
             star = ' <i class="q-major" title="기준 단가 안내 언어">★</i>' if r["code"] in MAJOR else ""
             er = r.get("er")
-            ers = "" if er is None else ("0.1% 미만" if er < 0.001 else f"{er * 100:.1f}%")
+            ers = acc_text(er)
+            tip = "" if er is None else f"정확도 {ers} · 글자 오류율 {'0.1% 미만' if er < 0.001 else f'{er * 100:.1f}%'}(띄어쓰기·문장부호 제외)"
             dag = '<sup title="60초 시료">†</sup>' if r.get("basis") == "60s" else ""
-            chips.append(f'<li><span class="q-grade q-{g} q-sm">{g}</span><span class="q-nm">{esc(r["name"])}{star}</span><small class="q-er" title="이 언어의 측정 오류율(글자, 띄어쓰기·문장부호 제외)">{esc(ers)}{dag}</small><small class="q-cd">{esc(r["code"])}</small></li>')
+            chips.append(f'<li><span class="q-grade q-{g} q-sm">{g}</span><span class="q-nm">{esc(r["name"])}{star}</span><small class="q-er" title="{esc(tip)}">{esc(ers)}{dag}</small><small class="q-cd">{esc(r["code"])}</small></li>')
         out.append(f'<h3 class="q-h3"><span class="q-grade q-{g}">{g}</span> {esc(band)} <span class="q-n">{cnt.get(g, len(langs))}개 언어</span></h3>')
         out.append('<ul class="q-langs">' + "".join(chips) + "</ul>")
     return "\n".join(out)
@@ -150,12 +162,12 @@ def body(data):
         '<p><a class="more" href="/guide/error-rate.html">측정 예시와 원칙 자세히</a> <a class="more" href="/report-sample.html">무료 시범 제작의 오류 분석 리포트 예시</a></p>',
 
         '<h2 id="grades">100개 언어 자동 자막 등급표</h2>',
-        '<p>언어마다 자동 자막이 어느 수준인지 네 등급으로 나눴습니다. 등급과 옆의 작은 숫자는 <strong>상생기록법인이 실제로 쓰는 음성 인식 엔진으로 잰 값</strong>이라, 맡기시면 같은 수준이 나옵니다. 사람이 검수한 자막은 언어마다 검수자 확보에 따라 협의합니다. ★ 표시는 기준 단가를 안내하는 언어(한국어·영어·중국어·일본어)입니다.</p>',
+        '<p>언어마다 자동 자막이 어느 수준인지 네 등급으로 나눴습니다. 등급과 옆의 작은 숫자(정확도)는 <strong>상생기록법인이 실제로 쓰는 음성 인식 엔진으로 잰 값</strong>이라, 맡기시면 같은 수준이 나옵니다. 사람이 검수한 자막은 언어마다 검수자 확보에 따라 협의합니다. ★ 표시는 기준 단가를 안내하는 언어(한국어·영어·중국어·일본어)입니다.</p>',
         grade_table(data),
-        '<p class="g-note">※ 측정 방법 — 언어마다 공개 평가 자료(FLEURS)의 읽은 문장 60개(3편)를 상생기록법인이 쓰는 음성 인식 엔진 4개로 받아써, '
-        '<strong>그 언어에 가장 좋은 엔진의 글자 오류율</strong>로 등급을 매겼습니다(2026-11-05). † 표시 17개 언어는 FLEURS 에 없어 다른 공개 자료 60초 시료로 잰 값입니다(2026-10-29). '
-        '등급표의 숫자는 띄어쓰기·문장부호를 뺀 글자 오류율이라, 위 강의 오류율(띄어쓰기·문장부호 포함)과 셈법이 다릅니다. '
-        '실제 강의는 전문 용어·잡음·긴 발화 때문에 읽은 문장보다 높게 나올 수 있습니다(한국어 실제 강의 약 3%). 엔진이 바뀌면 다시 재서 올립니다.</p>',
+        '<p class="g-note">※ 측정 방법 — 언어마다 공개 평가 자료(FLEURS)의 읽은 문장(2분 × 3편, 한국어·영어·중국어·일본어·태국어·아랍어·힌디어는 3분 × 5편)을 상생기록법인이 쓰는 음성 인식 엔진 5개로 받아써, '
+        '<strong>그 언어에 가장 좋은 엔진의 글자 정확도(100% − 글자 오류율)</strong>로 등급을 매겼습니다(2026-11-05). † 표시 17개 언어는 FLEURS 에 없어 다른 공개 자료 60초 시료로 잰 값입니다(2026-10-29). '
+        '등급표의 숫자는 띄어쓰기·문장부호를 뺀 글자 기준이라, 위 강의 오류율(띄어쓰기·문장부호 포함)과 셈법이 다릅니다. '
+        '실제 강의는 전문 용어·잡음·긴 발화 때문에 읽은 문장보다 낮게 나올 수 있습니다(한국어 실제 강의 정확도 약 97%). 엔진이 바뀌면 다시 재서 올립니다.</p>',
 
         '<h2 id="keep">품질을 지키는 방법</h2>',
         '<ol class="g-steps">'
@@ -174,7 +186,8 @@ def body(data):
 
         '<section class="g-faq" aria-labelledby="faq-title"><h2 id="faq-title">자주 묻는 질문</h2>'
         '<details><summary>등급이 A 면 검수 없이 써도 되나요?</summary><p>초안으로는 바로 쓸 수 있습니다. 다만 강의 자막처럼 틀리면 안 되는 용도는 사람 검수를 권합니다. A 등급 한국어도 실제 강의에서는 1,000글자 중 약 30글자 수정이 필요합니다.</p></details>'
-        '<details><summary>등급표의 한국어 숫자와 위의 「약 3%」는 왜 다른가요?</summary><p>등급표는 공개 평가 자료의 또렷하게 읽은 문장을 띄어쓰기·문장부호를 빼고 잰 값이고, 위 3%는 2026-2학기 실제 강의 3,330편을 띄어쓰기·문장부호까지 넣어 잰 값입니다. 강의를 맡기실 때의 기대치는 실제 강의 값(약 3%)으로 보시면 됩니다.</p></details>'
+        '<details><summary>등급 기준은 왜 96%·92%·85%인가요?</summary><p>A 는 한국어 자동 자막과 같은 수준(같은 측정에서 한국어 97.0%)일 때만 드려야 「바로 초안」이라는 약속이 지켜집니다. 글자가 15% 넘게 틀리면 낱말로는 약 3분의 1이 틀려, 처음부터 듣고 받아쓰는 것과 비슷하므로 F 로 둡니다. B·C 는 그 사이를 검수 시간에 따라 나눴습니다.</p></details>'
+        '<details><summary>등급표의 한국어 97.0%와 위의 「정확도 약 97%」는 같은 숫자인가요?</summary><p>재는 법이 다릅니다. 등급표는 공개 평가 자료의 또렷하게 읽은 문장을 띄어쓰기·문장부호를 빼고 잰 값이고, 위 약 97%(오류율 약 3%)는 2026-2학기 실제 강의 3,330편을 띄어쓰기·문장부호까지 넣어 잰 값입니다. 강의를 맡기실 때의 기대치는 실제 강의 값(약 97%)으로 보시면 됩니다.</p></details>'
         '<details><summary>표에 없는 언어는요?</summary><p>표는 자동 자막이 가능한 100개 언어입니다. 그 밖의 언어는 사람 받아쓰기로 협의합니다.</p></details>'
         '<details><summary>우리 기관 강의의 오류율을 미리 알 수 있나요?</summary><p>강의 3편 무료 시범 제작의 오류 분석 리포트에서 같은 기준으로 측정한 강의별 오류율을 드립니다.</p></details>'
         '</section>',
