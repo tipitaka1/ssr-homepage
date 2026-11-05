@@ -313,7 +313,7 @@ def head_html(c, *, title, description, url, ld):
             '<link rel="icon" href="/favicon.ico" sizes="32x32">',
             '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
             '<link rel="stylesheet" href="/site.css">',
-            f'<link rel="stylesheet" href="{esc(c.assets)}guide.css">',
+            f'<link rel="stylesheet" href="{esc(c.assets)}guide.css?v=20261105b">',
             f'<script defer src="{esc(c.assets)}guide-drawer.js"></script>']
     out += [f'<script type="application/ld+json">{ld_json(obj)}</script>' for obj in ld]
     out.append("</head>")
@@ -335,6 +335,7 @@ def header_html(c):
         <li><a href="{h}#service">두 가지 자막</a></li>
         <li><a href="{h}#trial">무료 시범 제작</a></li>
         <li><a href="{h}#price">단가</a></li>
+        <li><a href="/quality/">품질</a></li>
         <li><a href="{h}#process">일하는 방식</a></li>
         <li><a href="{h}#clients">거래처</a></li>
         <li><a href="{h}#about">회사</a></li>

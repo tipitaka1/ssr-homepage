@@ -38,7 +38,7 @@ HEAD = """<!doctype html>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css">
-<link rel="stylesheet" href="/guide.css">
+<link rel="stylesheet" href="/guide.css?v=20261105b">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"홈","item":"{site}/"}},{{"@type":"ListItem","position":2,"name":"{title}","item":"{url}"}}]}}</script>
 </head>
 <body class="g-page">
@@ -55,6 +55,7 @@ HEAD = """<!doctype html>
         <li><a href="/#service">두 가지 자막</a></li>
         <li><a href="/#trial">무료 시범 제작</a></li>
         <li><a href="/#price">단가</a></li>
+        <li><a href="/quality/">품질</a></li>
         <li><a href="/#process">일하는 방식</a></li>
         <li><a href="/#clients">거래처</a></li>
         <li><a href="/#about">회사</a></li>

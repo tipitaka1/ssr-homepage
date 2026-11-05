@@ -1,0 +1,513 @@
+{
+ "made": "2026-11-05",
+ "rule": "둘째로 좋은 엔진의 글자 오류율(CER): A ≤5% · B ≤10% · C ≤20% · F 그 밖",
+ "basis": "FLEURS dev — 언어마다 읽은 문장 60개(3편)",
+ "count": {
+  "A": 65,
+  "B": 12,
+  "C": 9,
+  "F": 14
+ },
+ "rows": [
+  {
+   "code": "af",
+   "name": "아프리칸스어",
+   "grade": "A"
+  },
+  {
+   "code": "ar",
+   "name": "아랍어",
+   "grade": "A"
+  },
+  {
+   "code": "as",
+   "name": "아삼어",
+   "grade": "A"
+  },
+  {
+   "code": "az",
+   "name": "아제르바이잔어",
+   "grade": "A"
+  },
+  {
+   "code": "be",
+   "name": "벨라루스어",
+   "grade": "A"
+  },
+  {
+   "code": "bg",
+   "name": "불가리아어",
+   "grade": "A"
+  },
+  {
+   "code": "bn",
+   "name": "벵골어",
+   "grade": "A"
+  },
+  {
+   "code": "bs",
+   "name": "보스니아어",
+   "grade": "A"
+  },
+  {
+   "code": "ca",
+   "name": "카탈루냐어",
+   "grade": "A"
+  },
+  {
+   "code": "cs",
+   "name": "체코어",
+   "grade": "A"
+  },
+  {
+   "code": "da",
+   "name": "덴마크어",
+   "grade": "A"
+  },
+  {
+   "code": "de",
+   "name": "독일어",
+   "grade": "A"
+  },
+  {
+   "code": "el",
+   "name": "그리스어",
+   "grade": "A"
+  },
+  {
+   "code": "en",
+   "name": "영어",
+   "grade": "A"
+  },
+  {
+   "code": "es",
+   "name": "스페인어",
+   "grade": "A"
+  },
+  {
+   "code": "et",
+   "name": "에스토니아어",
+   "grade": "A"
+  },
+  {
+   "code": "eu",
+   "name": "바스크어",
+   "grade": "A"
+  },
+  {
+   "code": "fa",
+   "name": "페르시아어",
+   "grade": "A"
+  },
+  {
+   "code": "fi",
+   "name": "핀란드어",
+   "grade": "A"
+  },
+  {
+   "code": "fr",
+   "name": "프랑스어",
+   "grade": "A"
+  },
+  {
+   "code": "gl",
+   "name": "갈리시아어",
+   "grade": "A"
+  },
+  {
+   "code": "gu",
+   "name": "구자라트어",
+   "grade": "A"
+  },
+  {
+   "code": "hi",
+   "name": "힌디어",
+   "grade": "A"
+  },
+  {
+   "code": "hr",
+   "name": "크로아티아어",
+   "grade": "A"
+  },
+  {
+   "code": "hu",
+   "name": "헝가리어",
+   "grade": "A"
+  },
+  {
+   "code": "hy",
+   "name": "아르메니아어",
+   "grade": "A"
+  },
+  {
+   "code": "id",
+   "name": "인도네시아어",
+   "grade": "A"
+  },
+  {
+   "code": "is",
+   "name": "아이슬란드어",
+   "grade": "A"
+  },
+  {
+   "code": "it",
+   "name": "이탈리아어",
+   "grade": "A"
+  },
+  {
+   "code": "ja",
+   "name": "일본어",
+   "grade": "A"
+  },
+  {
+   "code": "kk",
+   "name": "카자흐어",
+   "grade": "A"
+  },
+  {
+   "code": "kn",
+   "name": "칸나다어",
+   "grade": "A"
+  },
+  {
+   "code": "ko",
+   "name": "한국어",
+   "grade": "A"
+  },
+  {
+   "code": "la",
+   "name": "라틴어",
+   "grade": "A"
+  },
+  {
+   "code": "lt",
+   "name": "리투아니아어",
+   "grade": "A"
+  },
+  {
+   "code": "lv",
+   "name": "라트비아어",
+   "grade": "A"
+  },
+  {
+   "code": "mk",
+   "name": "마케도니아어",
+   "grade": "A"
+  },
+  {
+   "code": "ml",
+   "name": "말라얄람어",
+   "grade": "A"
+  },
+  {
+   "code": "ms",
+   "name": "말레이어",
+   "grade": "A"
+  },
+  {
+   "code": "mt",
+   "name": "몰타어",
+   "grade": "A"
+  },
+  {
+   "code": "ne",
+   "name": "네팔어",
+   "grade": "A"
+  },
+  {
+   "code": "nl",
+   "name": "네덜란드어",
+   "grade": "A"
+  },
+  {
+   "code": "no",
+   "name": "노르웨이어",
+   "grade": "A"
+  },
+  {
+   "code": "pa",
+   "name": "펀자브어",
+   "grade": "A"
+  },
+  {
+   "code": "pl",
+   "name": "폴란드어",
+   "grade": "A"
+  },
+  {
+   "code": "pt",
+   "name": "포르투갈어",
+   "grade": "A"
+  },
+  {
+   "code": "ro",
+   "name": "루마니아어",
+   "grade": "A"
+  },
+  {
+   "code": "ru",
+   "name": "러시아어",
+   "grade": "A"
+  },
+  {
+   "code": "sk",
+   "name": "슬로바키아어",
+   "grade": "A"
+  },
+  {
+   "code": "sl",
+   "name": "슬로베니아어",
+   "grade": "A"
+  },
+  {
+   "code": "sq",
+   "name": "알바니아어",
+   "grade": "A"
+  },
+  {
+   "code": "sr",
+   "name": "세르비아어",
+   "grade": "A"
+  },
+  {
+   "code": "su",
+   "name": "순다어",
+   "grade": "A"
+  },
+  {
+   "code": "sv",
+   "name": "스웨덴어",
+   "grade": "A"
+  },
+  {
+   "code": "sw",
+   "name": "스와힐리어",
+   "grade": "A"
+  },
+  {
+   "code": "te",
+   "name": "텔루구어",
+   "grade": "A"
+  },
+  {
+   "code": "tg",
+   "name": "타지크어",
+   "grade": "A"
+  },
+  {
+   "code": "th",
+   "name": "태국어",
+   "grade": "A"
+  },
+  {
+   "code": "tl",
+   "name": "타갈로그어",
+   "grade": "A"
+  },
+  {
+   "code": "tr",
+   "name": "터키어",
+   "grade": "A"
+  },
+  {
+   "code": "uk",
+   "name": "우크라이나어",
+   "grade": "A"
+  },
+  {
+   "code": "ur",
+   "name": "우르두어",
+   "grade": "A"
+  },
+  {
+   "code": "vi",
+   "name": "베트남어",
+   "grade": "A"
+  },
+  {
+   "code": "yue",
+   "name": "광둥어",
+   "grade": "A"
+  },
+  {
+   "code": "zh",
+   "name": "중국어(표준)",
+   "grade": "A"
+  },
+  {
+   "code": "cy",
+   "name": "웨일스어",
+   "grade": "B"
+  },
+  {
+   "code": "ha",
+   "name": "하우사어",
+   "grade": "B"
+  },
+  {
+   "code": "he",
+   "name": "히브리어",
+   "grade": "B"
+  },
+  {
+   "code": "jw",
+   "name": "자바어",
+   "grade": "B"
+  },
+  {
+   "code": "ka",
+   "name": "조지아어",
+   "grade": "B"
+  },
+  {
+   "code": "km",
+   "name": "크메르어",
+   "grade": "B"
+  },
+  {
+   "code": "lb",
+   "name": "룩셈부르크어",
+   "grade": "B"
+  },
+  {
+   "code": "mi",
+   "name": "마오리어",
+   "grade": "B"
+  },
+  {
+   "code": "mn",
+   "name": "몽골어",
+   "grade": "B"
+  },
+  {
+   "code": "mr",
+   "name": "마라티어",
+   "grade": "B"
+  },
+  {
+   "code": "sd",
+   "name": "신디어",
+   "grade": "B"
+  },
+  {
+   "code": "ta",
+   "name": "타밀어",
+   "grade": "B"
+  },
+  {
+   "code": "am",
+   "name": "암하라어",
+   "grade": "C"
+  },
+  {
+   "code": "haw",
+   "name": "하와이어",
+   "grade": "C"
+  },
+  {
+   "code": "ht",
+   "name": "아이티 크리올어",
+   "grade": "C"
+  },
+  {
+   "code": "ln",
+   "name": "링갈라어",
+   "grade": "C"
+  },
+  {
+   "code": "my",
+   "name": "미얀마어",
+   "grade": "C"
+  },
+  {
+   "code": "nn",
+   "name": "노르웨이어(뉘노르스크)",
+   "grade": "C"
+  },
+  {
+   "code": "sn",
+   "name": "쇼나어",
+   "grade": "C"
+  },
+  {
+   "code": "so",
+   "name": "소말리어",
+   "grade": "C"
+  },
+  {
+   "code": "uz",
+   "name": "우즈베크어",
+   "grade": "C"
+  },
+  {
+   "code": "ba",
+   "name": "바시키르어",
+   "grade": "F"
+  },
+  {
+   "code": "bo",
+   "name": "티베트어",
+   "grade": "F"
+  },
+  {
+   "code": "br",
+   "name": "브르타뉴어",
+   "grade": "F"
+  },
+  {
+   "code": "fo",
+   "name": "페로어",
+   "grade": "F"
+  },
+  {
+   "code": "lo",
+   "name": "라오어",
+   "grade": "F"
+  },
+  {
+   "code": "mg",
+   "name": "말라가시어",
+   "grade": "F"
+  },
+  {
+   "code": "oc",
+   "name": "오크어",
+   "grade": "F"
+  },
+  {
+   "code": "ps",
+   "name": "파슈토어",
+   "grade": "F"
+  },
+  {
+   "code": "sa",
+   "name": "산스크리트어",
+   "grade": "F"
+  },
+  {
+   "code": "si",
+   "name": "신할라어",
+   "grade": "F"
+  },
+  {
+   "code": "tk",
+   "name": "투르크멘어",
+   "grade": "F"
+  },
+  {
+   "code": "tt",
+   "name": "타타르어",
+   "grade": "F"
+  },
+  {
+   "code": "yi",
+   "name": "이디시어",
+   "grade": "F"
+  },
+  {
+   "code": "yo",
+   "name": "요루바어",
+   "grade": "F"
+  }
+ ]
+}
