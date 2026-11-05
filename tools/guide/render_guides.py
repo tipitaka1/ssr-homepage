@@ -351,6 +351,7 @@ FOOTER = f"""<footer class="site-foot">
     <p>대표이사 이승재<span class="gap"></span>사업자등록번호 837-86-03311</p>
     <p>서울특별시 서초구 효령로25길 28, 2층 11호 (방배동, 이레힐)</p>
     <p><a href="mailto:{MAIL}">{MAIL}</a><span class="gap"></span><a href="tel:{TEL}">{TEL}</a></p>
+    <p class="foot-legal"><a href="/terms/">이용약관</a><span class="gap"></span><a href="/privacy/"><b>개인정보 처리방침</b></a><span class="gap"></span><a href="/data/">데이터 처리 안내</a></p>
     <p class="copy">© {BRAND}</p>
   </div>
 </footer>"""

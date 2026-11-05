@@ -206,3 +206,16 @@ html.g-lock{overflow:hidden}
 @media print{
   .g-drawer,.g-band{display:none}
 }
+
+/* 바닥 문서(이용약관·개인정보 처리방침·데이터 처리 안내) */
+.legal-meta{margin:0 0 6px;font-size:14px;color:var(--muted)}
+.legal > h2{font-size:clamp(18px,2vw,20px);margin:38px 0 10px}
+.legal-items{margin:4px 0 16px;padding-left:22px;line-height:1.75}
+.legal-items li{margin:4px 0}
+.legal .g-table{font-size:15px}
+.legal .g-table th,.legal .g-table td{vertical-align:top}
+.legal-nav{margin:44px 0 8px;padding-top:18px;border-top:1px solid var(--line);font-size:14px}
+.legal-nav a{color:var(--muted);text-decoration:none}
+.legal-nav a:hover{text-decoration:underline}
+.legal-nav a[aria-current]{color:var(--ink);font-weight:700}
+.legal-nav .gap{display:inline-block;width:14px}
