@@ -14,6 +14,7 @@ URL = SITE + "/quality/"
 TITLE = "품질"
 DESC = "자막 오류율 측정 기준, 자동 자막 오류율 약 3%(2026-2학기 실제 강의 3,330편 실측)·사람이 검수한 자막 약 0.3%, 100개 언어 자동 자막 등급표(A·B·C·F)와 품질을 지키는 방법."
 MAJOR = {"ko": "기준 단가 안내 언어", "en": "기준 단가 안내 언어", "zh": "기준 단가 안내 언어", "ja": "기준 단가 안내 언어"}
+MAJOR_ORDER = ["ko", "en", "zh", "ja"]
 GRADES = [
     ("A", "측정 오류율 5% 이하", "자동 자막을 바로 초안으로 쓸 수 있는 수준입니다. 사람이 검수하면 납품 품질이 됩니다."),
     ("B", "5% 초과 ~ 10%", "자동 자막을 초안으로 쓸 수 있지만 검수에 시간이 더 듭니다."),
@@ -46,7 +47,7 @@ HEAD = """<!doctype html>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css?v=20261105b">
-<link rel="stylesheet" href="/guide.css?v=20261105b">
+<link rel="stylesheet" href="/guide.css?v=20261105c">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"홈","item":"{site}/"}},{{"@type":"ListItem","position":2,"name":"{title}","item":"{url}"}}]}}</script>
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebPage","name":"{title} — 오류율 측정 기준과 100개 언어 등급표","url":"{url}","description":"{desc}","inLanguage":"ko","isPartOf":{{"@type":"WebSite","name":"{brand}","url":"{site}/"}}}}</script>
 </head>
@@ -119,7 +120,7 @@ def grade_table(data):
     for g, band, _ in GRADES:
         langs = [r for r in rows if r["grade"] == g]
         chips = []
-        for r in sorted(langs, key=lambda r: (r["code"] not in MAJOR, r["name"])):
+        for r in sorted(langs, key=lambda r: (MAJOR_ORDER.index(r["code"]) if r["code"] in MAJOR_ORDER else 9, r["name"])):   # 한국어·영어·중국어·일본어 먼저
             star = ' <i class="q-major" title="기준 단가 안내 언어">★</i>' if r["code"] in MAJOR else ""
             chips.append(f'<li><span class="q-grade q-{g} q-sm">{g}</span>{esc(r["name"])}{star}<small>{esc(r["code"])}</small></li>')
         out.append(f'<h3 class="q-h3"><span class="q-grade q-{g}">{g}</span> {esc(band)} <span class="q-n">{cnt.get(g, len(langs))}개 언어</span></h3>')

@@ -221,7 +221,7 @@ html.g-lock{overflow:hidden}
 .legal-nav .gap{display:inline-block;width:14px}
 
 /* 품질 페이지(/quality/) — 언어 등급표 (2026-11-05) */
-.q-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin:16px 0 26px}
+.q-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin:16px 0 26px}
 .q-leg{display:flex;gap:10px;align-items:flex-start;padding:12px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
 .q-leg b{display:block;font-size:15px;line-height:1.4}
 .q-leg p{margin:4px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
